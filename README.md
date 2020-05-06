@@ -1,7 +1,7 @@
 # TCC - Gabriel C. Ullmann
 
 ## Descrição
-Obtenção de sugestões de produtos com base no histórico de compras de um cliente
+Geração de sugestões de produtos através de IA com base no histórico de compras de clientes em um e-commerce
 
 ## Instalação
 - Baixe o Python 3.7.x (https://www.python.org/downloads/)
