@@ -27,6 +27,17 @@ def doQuery(db, document, query):
         print(ex)
         return None
 
+def clear(db, document):
+    try:
+        client = getConnection(True)
+        mydb = client[db]
+        mycol = mydb[document]
+        result = mycol.remove()
+        return result
+    except Exception as ex:
+        print(ex)
+        return None
+
 def insertMany(db, document, array):
     try:
         client = getConnection(True)
