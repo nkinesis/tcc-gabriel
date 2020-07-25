@@ -1,36 +1,43 @@
-from database import *
-from dataframe import *
-from clustering import *
+from database import Database
+from dataframe import Dataframe
+from clustering import Clustering
 
 def main():
 
-    # do db setup before starting (optional)
+    # create object instances
     print("Preparing to start...")
+
+    db = Database(None)
+    df = Dataframe(None)
+    cluster = Clustering(4)
+
+    # do db setup before starting (optional)
     cleandb = True
     if cleandb:
-        clear('tcc', 'processed')
+        db.clear('tcc', 'processed')
 
     try:
         # get data
         print("Step 1/3 - Fetching and formatting...")
-        rs = doQuery("tcc", "online_retail", { "avgQty": "2" })
+        rs = db.doQuery("tcc", "online_retail", { "avgQty": "2" })
 
         # convert to dataframe and format
-        orders = createDf(rs)
-        orders = deleteCol(orders, "_id")
-        orders = deleteCol(orders, "avgQty")
-        orders = convertDf(orders, "int32")
+        orders = df.createDf(rs)
+        orders = df.deleteCol(orders, "_id")
+        orders = df.deleteCol(orders, "avgQty")
+        orders = df.convertDf(orders, "int32")
 
         #clusterize
         print("Step 2/3 - Clustering...")
-        results = doKmeans(orders, 4)
+        results = cluster.doKmeans(orders)
 
         # add clusterization results to dataset and save
         print("Step 3/3 - Preparing and saving...")
-        orders = addCol(orders, "cluster", results["yhat"])
-        orders_json = toJson(orders)
-        result = insertMany("tcc", "processed", orders_json)
+        orders = df.addCol(orders, "cluster", results["yhat"])
+        orders_json = df.toJson(orders)
+        result = db.insertMany("tcc", "processed", orders_json)
         print("Done!")
+        print(result)
 
     except Exception as ex:
         print("An error has occured!")
