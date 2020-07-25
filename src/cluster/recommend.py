@@ -13,8 +13,11 @@ class Recommend:
         query = { "clientId": clientId, "month": month }
         result = db.doQuery(self.db, self.coll, query)
         orders = df.createDf(result)
-        print(orders)
+        orders = df.deleteCol(orders, "_id")
+
+        return df.toJson(orders, True)
 
 if __name__ == "__main__":
-    rc = Recommend('tcc', 'processed')
-    rc.get(13047, 1)
+    print("Recommendation test.")
+    #rc = Recommend("tcc", "processed")
+    #rc.get(13047, 1)

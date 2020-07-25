@@ -14,12 +14,13 @@ def main():
     # do db setup before starting (optional)
     cleandb = True
     if cleandb:
-        db.clear('tcc', 'processed')
+        db.clear("tcc", "processed")
 
     try:
         # get data
         print("Step 1/3 - Fetching and formatting...")
-        rs = db.doQuery("tcc", "online_retail", { "avgQty": "2" })
+        to_cluster = { "avgQty": "2" }
+        rs = db.doQuery("tcc", "online_retail", to_cluster)
 
         # convert to dataframe and format
         orders = df.createDf(rs)
@@ -34,7 +35,7 @@ def main():
         # add clusterization results to dataset and save
         print("Step 3/3 - Preparing and saving...")
         orders = df.addCol(orders, "cluster", results["yhat"])
-        orders_json = df.toJson(orders)
+        orders_json = df.toJson(orders, False)
         result = db.insertMany("tcc", "processed", orders_json)
         print("Done!")
         print(result)

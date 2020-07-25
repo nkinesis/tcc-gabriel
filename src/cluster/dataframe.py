@@ -1,5 +1,6 @@
 import pandas as pd
 import numpy as np
+import json
 
 class Dataframe:
 
@@ -21,6 +22,9 @@ class Dataframe:
         df = df.astype(type)
         return df
 
-    def toJson(self, df):
-        return df.to_dict(orient='records')
+    def toJson(self, df, isText):
+        if not isText:
+            return df.to_dict(orient="records")
+        else:
+            return df.to_json(orient="records")
 
