@@ -1,3 +1,4 @@
+import sys
 from model.database import Database
 from model.dataframe import Dataframe
 from model.clustering import Clustering
@@ -6,10 +7,12 @@ def main():
 
     # create object instances
     print("Preparing to start...")
+    print("Number of clusters: " + sys.argv[1])
 
     db = Database(None)
     df = Dataframe(None)
-    cluster = Clustering(4)
+    n_clusters = int(sys.argv[1])
+    cluster = Clustering(n_clusters if n_clusters else 1)
 
     # do db setup before starting (optional)
     cleandb = True
@@ -19,7 +22,7 @@ def main():
     try:
         # get data
         print("Step 1/3 - Fetching and formatting...")
-        to_cluster = { "avgQty": "2" }
+        to_cluster = {}
         rs = db.doQuery("tcc", "online_retail", to_cluster)
 
         # convert to dataframe and format
