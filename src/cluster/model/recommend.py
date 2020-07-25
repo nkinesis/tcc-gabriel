@@ -1,5 +1,5 @@
-from database import Database
-from dataframe import Dataframe
+from model.database import Database
+from model.dataframe import Dataframe
 
 class Recommend:
     def __init__(self, database, collection):
@@ -13,7 +13,9 @@ class Recommend:
         query = { "clientId": clientId, "month": month }
         result = db.doQuery(self.db, self.coll, query)
         orders = df.createDf(result)
-        orders = df.deleteCol(orders, "_id")
+
+        if len(result) > 0:
+            orders = df.deleteCol(orders, "_id")
 
         return df.toJson(orders, True)
 

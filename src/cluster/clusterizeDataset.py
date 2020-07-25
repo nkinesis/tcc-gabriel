@@ -1,6 +1,6 @@
-from database import Database
-from dataframe import Dataframe
-from clustering import Clustering
+from model.database import Database
+from model.dataframe import Dataframe
+from model.clustering import Clustering
 
 def main():
 
@@ -25,7 +25,7 @@ def main():
         # convert to dataframe and format
         orders = df.createDf(rs)
         orders = df.deleteCol(orders, "_id")
-        orders = df.deleteCol(orders, "avgQty")
+        # orders = df.deleteCol(orders, "avgQty")
         orders = df.convertDf(orders, "int32")
 
         #clusterize
