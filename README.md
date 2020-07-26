@@ -6,6 +6,7 @@ Geração de sugestões de produtos através de IA com base no histórico de com
 ## Instalação
 - Baixe o Python 3.7.x (https://www.python.org/downloads/)
 - Instale as dependências conforme arquivo requirements.txt
+- Instale o MongoDB (https://www.mongodb.com/try/download/community)
 
 ## Estrutura
 - Pasta "data" contém datasets utilizados
