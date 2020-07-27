@@ -1,0 +1,153 @@
+% Seleciona o idioma do documento (conforme pacotes do babel)
+%\selectlanguage{english}
+\selectlanguage{brazil}
+
+% Retira espaço extra obsoleto entre as frases.
+\frenchspacing 
+
+\newpage
+
+% ==============================================
+% ELEMENTOS PRÉ-TEXTUAIS
+% ==============================================
+\pretextual
+
+% ----------------------------------------------
+% Capa
+% ----------------------------------------------
+%\imprimircapa
+% Capa personalizada sem o uso de \imprimircapa
+\begin{capa} 
+   \center
+  {\ABNTEXsubsectionfont\large \imprimirinstituicao} \linebreak
+  {\ABNTEXsubsectionfont\large DEPARTAMENTO DE CIÊNCIAS EXATAS E ENGENHARIAS} \linebreak
+  {\ABNTEXsubsectionfont\large CURSO DE CIÊNCIA DA COMPUTAÇÃO} \linebreak
+  {\ABNTEXsubsectionfont\large CAMPUS SANTA ROSA}
+   \vfill
+   \ABNTEXchapterfont\Large\bfseries{\MakeUppercase{\imprimirtitulo}}
+   \vfill
+   \begin{center}
+   \ABNTEXchapterfont\large\bfseries\textsc{\MakeUppercase{\imprimirautor}}
+   \end{center}
+   \vfill
+   \vspace*{5cm}
+   \large\normalfont\MakeTextUppercase{\imprimirlocal} \\
+   \large\normalfont\the\year
+   \vspace*{1cm}
+\end{capa}
+
+% ----------------------------------------------
+% Folha de rosto
+% ----------------------------------------------
+% folha de rosto personalizada sem uso de \imprimirfolhaderosto
+\makeatletter
+
+\renewcommand{\folhaderostocontent} {
+    \begin{center}
+      {\ABNTEXsubsectionfont\large \imprimirinstituicao} \linebreak
+      {\ABNTEXsubsectionfont\large DEPARTAMENTO DE CIÊNCIAS EXATAS E ENGENHARIAS} \linebreak
+      {\ABNTEXsubsectionfont\large CURSO DE CIÊNCIA DA COMPUTAÇÃO} \linebreak
+      {\ABNTEXsubsectionfont\large CAMPUS SANTA ROSA}
+    \end{center}  
+    \vspace*{3cm}
+    \begin{center}
+      \vspace*{\fill}
+      \begin{center}
+      \ABNTEXchapterfont\bfseries\Large\imprimirtitulo
+      \end{center}
+      \vspace*{\fill}
+      \vspace*{3cm}
+      \abntex@ifnotempty{\imprimirpreambulo}{%
+        \hspace{.45\textwidth}
+        \begin{minipage}{.5\textwidth}
+        \SingleSpacing
+        \imprimirpreambulo
+        \end{minipage}
+        \vspace*{\fill}
+      }
+    
+      \abntex@ifnotempty{\imprimirorientador}{%
+      \hspace{.45\textwidth}
+      \begin{minipage}{.5\textwidth}
+    	{\imprimirorientadorRotulo~\imprimirorientador}%
+      \end{minipage}
+      }
+      
+      \vspace*{3cm}
+      
+      \vspace*{\fill}
+      {\large\imprimirlocal}
+      \par
+      {\large\the\year}
+      \vspace*{1cm}
+    \end{center}
+}
+
+
+\makeatother
+
+% Folha de rosto
+\folhaderostocontent
+
+
+% ||||||||||||||||||||||||||||||||||||||||||||||
+% RESUMOS
+% ||||||||||||||||||||||||||||||||||||||||||||||
+
+% ----------------------------------------------
+% Resumo em português
+% ----------------------------------------------
+% Importante: De acordo com a NBR6024 as palavras-chaves devem ser separadas entre si por ponto e devem ter somente a primeira palavra escrita com letra maiúscula
+%\iffalse
+%\setlength{\absparsep}{18pt} % ajusta o espaçamento dos parágrafos do resumo
+% \begin{resumo}
+% 	
+%     \lipsum[7]
+%     
+% 	\vspace{\onelineskip}
+%  
+% 	\noindent 
+% 	\textbf{Palavras-chaves}: Palavras
+% \end{resumo}
+
+% ----------------------------------------------
+% inserir lista de ilustrações
+% ----------------------------------------------
+% \pdfbookmark[0]{\listfigurename}{lof}
+% \listoffigures*
+% \cleardoublepage
+
+% Diferentes tipos de listas podem ser criadas por meio de macros do memoir.
+
+% ----------------------------------------------
+% inserir lista de tabelas
+% ----------------------------------------------
+% \pdfbookmark[0]{\listtablename}{lot}
+% \listoftables*
+% \cleardoublepage
+
+% ----------------------------------------------
+% inserir lista de abreviaturas e siglas
+% ----------------------------------------------
+% Importante: As abreviaturas e siglas devem estar em ordem alfabética
+% \begin{siglas}
+%   \item[ABNT] Associação Brasileira de Normas Técnicas
+%   \item[abnTeX] ABsurdas Normas para TeX
+% \end{siglas}
+% \fi
+
+% ----------------------------------------------
+% Página em branco
+% ----------------------------------------------
+% \cleardoublepage {\char"2800}
+% \cleardoublepage {\char"2800}
+
+% ----------------------------------------------
+% inserir o sumário
+% ----------------------------------------------
+\pdfbookmark[0]{\contentsname}{toc}
+\tableofcontents*
+\thispagestyle{empty}
+\pagestyle{simple}
+%\thispagestyle{empty}
+% \cleardoublepage

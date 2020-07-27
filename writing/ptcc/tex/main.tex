@@ -1,0 +1,296 @@
+% Modelo UNISINOS para teses e dissertacoes
+
+% PARA COMEÇAR A ESCREVER NÃO SE DETENHA AOS CÓDIGOS INICIAIS DO DOCUMENTO, VOCÊ IRÁ ENTENDÊ-LOS COM O TEMPO. 
+% IR DIRETO PARA O CAPÍTULO 1 - INTRODUÇÃO.
+
+% Arquivo de configurações e pacotes.
+\input{0-setup}
+
+% Arquivo de dados do documento: título, autor...
+\input{1-dados}
+
+% ----------------------------------------------
+% Início do documento
+% ----------------------------------------------
+\begin{document}
+
+% ----------------------------------------------
+% Adiciona lista de correções no início do documento.
+% Comentar a linha abaixo quando o trabalho for concluído
+% ----------------------------------------------
+%\listoftodos
+% ----------------------------------------------
+
+% Arquivo de elementos pré-textuais: capa, folha de rosto, ficha catalografica, errata, folha de aprovação dedicatória, agradecimentos, epígrafe, resumos, lista de abreviaturas e siglas, lista de símbolos... 
+\input{2-pretextual}
+
+\textual
+
+\chapter{Introdução}
+\pagestyle{simple} 
+
+\section{Visão geral}
+O Brasil é o país com maior faturamento em e-commerce na América Latina, faturando R\$ 133 bi em 2018 (\citeauthor{ebit19}, \citeyear{ebit19}). No mundo, esse mercado somou US\$ 2,8 tri em vendas no mesmo ano (\citeauthor{shopify19}, \citeyear{shopify19}).
+
+De forma a se destacar em meio a milhares de lojas online, empresas do ramo estão buscando levar aos consumidores produtos e serviços que sejam mais relevantes em suas vidas diárias. Para cumprir esse objetivo, é fundamental entender os hábitos dos mesmos, e essa compreensão pode ser alcançada através da análise da informação que os empreendimentos possuem sobre as compras de seus clientes. Além das técnicas estatísticas convencionais, abordagens de Inteligência Artificial (IA) e Machine Learning (ML) tem se tornado populares recentemente para realizar esse tipo de inferência (\citeauthor{rheude19}, \citeyear{rheude19}).
+
+Esse projeto propõe a utilização de Machine Learning para inferir as preferências de consumidores e fazer sugestões de produtos com base em um histórico de compras. Essas sugestões podem ser geradas levando em consideração diferentes aspectos, como frequência, data e periodicidade da compra e tipo de produto comprado. No contexto de e-commerce B2B, pode-se também levar em consideração o segmento da empresa. Uma empresa de TI, por exemplo, está muito mais propensa a comprar eletrônicos e artigos relacionados do que, por exemplo, um supermercado.
+
+As sugestões podem chegar ao cliente das mais diferentes formas, seja por e-mail, mídias sociais ou notificações dentro da loja virtual. Contudo, esse trabalho não foca na implementação prática e visual de uma aplicação de e-commerce mas sim na seleção e análise de dados necessária para gerar sugestões a serem consumidas por uma aplicação desse tipo.
+
+O histórico de pedidos utilizado nesse estudo foi compilado pela empresa de tecnologia brasileira Olist e disponibilizado publicamente no repositório online Kaggle (\citeauthor{olist20}, \citeyear{olist20}).
+
+\section{Tema}
+O trabalho tem como tema criar/atualizar uma rede neural com a finalidade de gerar sugestões de produtos para usuários de um e-commerce com base em seu histórico de compra.
+
+\section{Questões}
+A questão central dessa pesquisa é: Com que precisão é possível inferir as preferência de compra de um consumidor utilizando redes neurais? Foram levantadas também questões secundárias, tais como:
+\begin{enumerate}
+\item Qual é a estrutura de rede neural mínima necessária para realizar inferências quanto aos produtos mais adequados para um consumidor?
+\item Como paralelizar o treinamento da rede neural utilizando processamento em GPU?
+\end{enumerate}
+
+\section{Justificativa}
+Com a recente popularização de técnicas de Inteligência Artificial e Machine Learning e sua ampla implementação em aplicações empresariais, torna-se relevante o desenvolvimento de um modelo de análise e sugestão de produtos que possa ser largamente utilizado em sistema voltados para a área de vendas.
+
+Além disso, constatou-se que não existem muitas referências de código aberto no que se refere a classificação de pedidos. Poucos projetos do tipo foram encontrados no GitHub e somente 1 dataset de pedidos foi encontrado no Kaggle\footnote{Busca realizada no dia 19/05/2020}. Sendo assim, os resultados desse trabalho de pesquisa tornam-se úteis pois poderão ser disponibilizados publicamente no futuro, para o benefício de desenvolvedores e pesquisadores ao redor do mundo.
+
+\section{Objetivos}
+
+Este trabalho tem os seguintes objetivos:
+
+\begin{enumerate}
+\item Criação/obtenção de uma ampla base de dados de pedidos (Big Data). 
+\item Criação/atualização de uma rede neural em Python utilizando a biblioteca Keras.
+\item Treinamento e teste da rede neural com diferentes parametrizações, a fim de definir a configuração mais otimizada para o problema em questão.
+\item Aplicação da IA treinada para gerar sugestões de produtos a partir das bases de dados selecionadas.
+\end{enumerate}
+
+\iffalse
+\textcolor{red}{procure citar mais autores\\
+por exemplo destes cites -- deixei comentado:
+%https://ieeexplore.ieee.org/search/searchresult.jsp?newsearch=true&queryText=artificial%20intelligence
+%https://scholar.google.com.br/scholar?hl=pt-BR&as_sdt=0%2C5&q=intelig%C3%AAncia+artificial&btnG=
+}
+\fi
+
+\chapter{Estado da arte}
+\pagestyle{simple} 
+
+Esse capítulo tem por objetivo apresentar os principais conceitos abordados neste trabalho. Nas seções 2.1 a 2.3 são apresentados as áreas de conhecimento e ferramentas de software relacionadas a aplicabilidade de Inteligência Artificial e suas sub-áreas.
+
+Nas últimas décadas vários trabalhos foram publicados nesse campo de pesquisa, demonstrando as mais diversas aplicações práticas dessas tecnologias. Na seção 2.4 estão dispostos esses trabalhos, de forma a demonstrar quais abordagens foram adotadas pelos autores para estudo das áreas em questão.
+
+No âmbito da aplicação de IA para geração de sugestões em aplicações de e-commerce, foco principal desse trabalho, o mercado mostra que essa é uma prática que veio para ficar. Isso ocorre pois essa tecnologia traz benefícios tanto para quem a aplica quanto para o usuário-alvo. Ao utilizá-la, os comerciantes desfrutam de um volume de vendas maior, visto que conseguem levar com mais assertividade seus produtos e serviços aos consumidores que estão interessados em adquirí-los. Os consumidores, da mesma forma, podem desfrutar de uma experiência mais agradável ao utilizar o e-commerce, recebendo recomendações que lhe agradem e não apenas uma torrente de propagandas sem conexão com suas atividades cotidianas e hábitos de consumo.
+
+Contudo, técnicas de IA trazem benefícios no dia a dia das pessoas em muitas outras áreas além do comércio, e frequentemente de maneira mais indireta. No campo das Ciências Sociais, por exemplo, já existem aplicações de IA na área do Direito, que permitem a advogados "trabalhar de forma mais eficiente e ampliar suas áreas de expertise" \cite{alaire18} e na área financeira para "prever relatórios financeiros fraudulentos e crises financeiras" \cite{clarence04}. 
+
+Há também algoritmos que se dedicam a análise de conteúdo textual, identificando casos de fake news na Internet \cite{chitturi20} ou até atuando como "jornalistas robôs" capazes de "resumir artigos científicos e transformá-los em press releases e matérias jornalísticas simples" \cite{tatalovic18}.
+
+No campo das Engenharias, IA já é utilizada no design otimizado de sistemas espaciais ligados por cabos \cite{chen19}, promover reuso de componentes de software e realizar análise de padrões de código \cite{wangoo18} e avaliar lances em licitações de construção civil \cite{sun11}.
+
+Em relação às Ciências da Vida, na Medicina, a IA Watson desenvolvida pela empresa IBM foi utilizada com sucesso para "acelerar a identificação de novos candidatos a medicamentos e medicamentos-alvo através da exploração do potencial do Big Data" \cite{chen16}. Na agricultura de precisão, aplicações de identificação de imagem com IA foram utilizadas para "tratar aspectos relacionadas a detecção de doenças, qualidade do grão e fenotipagem" \cite{patricio18}. 
+
+Outro foco popular da área de IA é o desenvolvimento de chatbots, agentes artificiais que podem atuar como interlocutores em uma conversação com um humano, auxiliar na aquisição de informações e oferecer respostas para perguntas \cite{wang18}. Eles podem ser aplicados em áreas tais como atendimento ao consumidor \cite{wessel20} e educação \cite{young19}.
+
+\section{Conceitos e áreas de conhecimento}
+
+\subsection {Inteligência Artificial}
+Segundo Larousse (\citeyear{larousse99}), IA é um "conjunto de teorias e de técnicas empregadas com a finalidade de desenvolver máquinas capazes de simular a inteligência humana". 
+
+De acordo com Nikopoulos (\citeyear{nikopoulos97}):
+
+\begin{citacao}
+A Inteligência Artificial é uma área de estudos da computação que se interessa pelo estudo e criação de sistemas que possam exibir um comportamento inteligente e realizar tarefas complexas com um nível de competência que é equivalente ou superior ao de um especialista humano.
+\end{citacao}
+
+Segundo John McCarthy, pioneiro que cunhou o termo Inteligência Artificial em 1955, o objetivo dessa área é "desenvolver máquinas que se comportam como se fossem inteligentes" \cite{wolf17}. Contudo, visto que não há consenso quanto ao que poderia ser considerado comportamento inteligente, essa definição é incompleta. A visão sobre o que é IA muda dependendo do momento histórico considerado, o que é descrito por McCorduck (\citeyear{corduck04}, p.204, tradução nossa):
+
+\begin{citacao}
+É parte da história da área de Inteligência Artificial o fato de que toda vez que alguém descobre como fazer um computador fazer algo - jogar xadrez bem, resolver problemas simples mas relativamente informais - há um coro de críticos para dizer, ‘isso não é raciocínio’.
+\end{citacao}
+
+Dessa forma, algumas definições de IA preferem abordar a implementação da tecnologia do ponto de vista do desenvolvimento de software. Conforme Waterman (\citeyear{waterman85}, tradução nossa):
+
+\begin{citacao}
+A Inteligência Artificial é uma sub-área da Ciência da Computação que objetiva desenvolver programas computacionais inteligentes. Esses programas são: solucionadores de problemas, programas que melhoram sua própria performance, programas que interpretam linguagens, programas que reconhecem esquemas visuais, enfim que se comportam de maneira que seria considerada inteligente se observada num ser humano.
+\end{citacao}
+
+De forma semelhante, segundo Pereira (\citeyear{pereira88}, p.2):
+
+\begin{citacao}
+A Inteligência Artificial é uma disciplina científica que utiliza as capacidades de processamento de símbolos da computação com o fim de encontrar métodos genéricos para automatizar actividades perceptivas, cognitivas e manipulativas, por via do computador.
+\end{citacao}
+
+
+Finalmente, de forma mais abrangente, Rich (\citeyear{rich83}, tradução nossa) descreve IA como "o estudo de como os computadores fazem coisas que, no momento, pessoas fazem melhor".
+
+\subsection {Redes Neurais}
+Segundo Ertel (\citeyear{wolf17}, tradução nossa) redes neurais são "redes de células no cérebro de humanos e animais". Embora essa seja a definição literal do termo, quando o relacionamos com IA esse limita-se mais precisamente a descrever o processo de representação formal e reprodução artificial do funcionamento dos neurônios orgânicos. Como discorre Ertel, "a partir do conhecimento do funcionamento de redes neurais naturais, tentamos modelá-las, simulá-las e até mesmo reconstruí-las em hardware".
+
+A replicação das redes neurais naturais de forma artificial se dá através do entendimento que o ser humano possui atualmente sobre o funcionamento de seu cérebro. Como descreve Rauber (\citeyear{rauber20}, p.3):
+
+\begin{citacao}
+(...) a pesquisa tenta entender o funcionamento da inteligência residente nos neurônios e mapeá-la para uma estrutura artificial, por exemplo uma combinação de hardware e software, assim transformando as redes neurais biológicas em redes neurais artificiais.
+\end{citacao}
+
+Similarmente, Haykin (\citeyear{haykin01}) define que:
+\begin{citacao}
+"Na sua forma mais geral uma rede neural é uma máquina que é projetada para modelar a maneira como o cérebro realiza uma tarefa particular ou função de interesse; a rede normalmente é implementada utilizando-se componentes eletrônicos ou é simulada por programação em um computador digital."
+\end{citacao}
+
+De forma mais pragmática, Osório (\citeyear{osorio20}) define que "as Redes Neurais Artificiais (RNAs) são ferramentas de Inteligência Artificial que possuem a capacidade de se adaptar e de aprender a realizar uma certa tarefa, ou comportamento, a partir de um conjunto de exemplos dados". 
+
+\subsection {Machine Learning}
+
+Segundo Azevedo (\citeyear{azevedo19}) "Machine learning é um nome genérico dado a um conjunto de métodos para análise de dados desenvolvidos com o intuito de fazer previsão e classificação".
+
+Segundo Mitchell (\citeyear{mitchell97}, tradução nossa) “Machine Learning é uma sub-área da Inteligência Artificial diz respeito a questão de como construir programas de computador que melhoram automaticamente através da experiência”. Através de um processo de treinamento com diversas iterações um programa pode encontrar relações entre dados contidos em um modelo. 
+
+Quantos aos principais tipos de algoritmos de machine learning, Stimpson (\citeyear{stimpson14}) descreve:
+
+\begin{citacao}
+"Machine learning (ou data mining) é uma ramificação da inteligência artificial que foca em algoritmos que identificam e aprendem as relações entre dados. Esses algoritmos geralmente são categorizados como não-supervisionados, que tentam identificar a estrutura intrínseca no dados, e supervisionados, que inferem uma função para relacionar dados a uma variável 'alvo'."
+\end{citacao}
+
+Quanto ao processo de inferência realizado por esses algoritmos, Alpaydin (\citeyear{alpa20}, tradução nossa) descreve de forma sucinta:
+
+\begin{citacao}
+“De forma geral, nossa abordagem é começar com um modelo bem generalizado com muitos parâmetros, e esse modelo geral pode fazer todo tipo de tarefa dependendo de como seus parâmetros estão definidos. Aprender corresponde a ajustar os valores desses parâmetros de forma que o modelo coincida da melhor forma com os dados vistos durante o treinamento. Baseado nos dados de treinamento, o modelo generalizado, através de uma configuração particular de seus parâmetros, torna-se especializado na tarefa distinta que encontra-se entremeada aos dados. A versão do modelo que obtemos após o treinamento, a instanciação específica do modelo padrão, torna-se o algoritmo para a tarefa.“
+\end{citacao}
+
+\subsection {Deep Learning}
+Segundo Skansi (\citeyear{skansi18}, tradução nossa), “considerando a visão mais simples possível, deep learning é o nome de uma classe específica da redes neurais artificiais, que por sua vez são uma classe especial de algoritmos de machine learning, aplicáveis a processamento de linguagem natural, computer vision e robótica.”
+
+Skansi também discorre sobre qual seria a maneira mais adequada de classificar o estudo de deep learning em relação a outras áreas de conhecimento relacionadas:
+
+\begin{citacao}
+“Um número crescente de áreas da IA como raciocínio e planejamento, outrora bastiões da IA lógica (também chamada de Good Old-Fashioned AI, ou GOFAI), estão sendo agora abordados de forma bem sucedida pelo deep learning. Nesse sentido, pode-se dizer que deep learning é uma abordagem de IA, e não apenas uma sub-área de uma sub-área da IA.”
+\end{citacao}
+
+De maneira mais formal e relacionada com o funcionamento de redes neurais, LeCun (\citeyear{lecun15}, tradução nossa) descreve que um algoritmo de deep learning “descobre estruturas intrincadas em grandes conjuntos de dados utilizando-se do algoritmo de backpropagation para indicar como uma máquina deveria alterar seus parâmetros internos que são utilizados para computar a representação em cada camada a partir da representação na camada anterior.”
+
+Segundo Aggarwal (\citeyear{aggar18}, tradução nossa):
+
+\begin{citacao}
+“A ideia base do deep learning é de que a repetida composição de funções pode frequentemente reduzir os requerimentos no número de funções base (unidades computacionais) por um fator que é exponencialmente relacionado ao número de camadas da rede. Portanto, embora o número de camadas em uma rede aumente, o número de parâmetros requeridos para aproximar a mesma função reduz drasticamente. Isso aumenta o poder de generalização da rede. A ideia por trás da arquiteturas profundas é da que elas podem identificar melhor irregularidades repetidas em padrões de dados de forma a reduzir o número de unidades computacionais e portanto generalizar o aprendizado até mesmo em área do espaço amostral nos quais não existem exemplos.”
+\end{citacao}
+
+\section{Ambientes de desenvolvimento}
+Existem vários ambientes de desenvolvimento (IDEs) para trabalhar com redes neurais em diferentes linguagens. Para fins de contextualização, será realizada aqui uma breve comparação entre ambientes para a linguagem Python.
+
+O Spyder é uma IDE de código aberto escrita em Python. Conforme o site oficial da ferramenta, ela oferece "uma combinação única de funcionalidades de edição avançada, análise, depuração e profiling que podem ser encontradas em uma ferramenta de desenvolvimento completa com as capacidades de exploração de dados, execução interativa, inspeção profunda e visualização agradável de um pacote científico" \cite{spyder20}.
+
+O Jupyter Notebook é uma IDE de código aberto para as linguagens Python, Julia e R desenvolvida pela Project Jupyter, uma organização sem fins lucrativos. Diferentes de outros ambientes do mesmo tipo, o Jupyter é uma aplicação web que roda localmente e que possui um front-end acessível pelo usuário através do navegador. Através da ferramenta é possível criar e compartilhar documentos que possuem código executável, equações, visualizações e textos explicativos. Além de machine learning, a ferramenta pode ser utilizada também para simulação numérica, limpeza, transformação e visualização de dados \cite{jupyter20}.
+
+O PyCharm é uma IDE de código fechado desenvolvida pela empresa JetBrains. O ambiente fornece várias funcionalidades focadas em tornar o processo de desenvolvimento mais ágil e aumentar produtividade, tais como completamento de código automático, checagem de erros em tempo real e recomendações de código baseadas no PEP8, manual de boas-práticas do Python. O PyCharm possui duas versões: a Community, que é gratuita mas tem funcionalidades limitadas, e a Professional, que não possui limitações mas é paga \cite{pycharm20}. 
+
+
+\section{Bibliotecas}
+É possível construir e treinar redes neurais em qualquer linguagem de programação sem necessidade de instalação de bibliotecas ou frameworks. Contudo, nesse caso é necessário escrever a implementação de algoritmo para inicializar pesos e biases, funções de ativação, custo e backpropagation com base em suas definições matemáticas formais \cite{peixeiro19}, o que torna o desenvolvimento de uma aplicação completa mais lento e trabalhoso, exigindo profundo conhecimento teórico de IA por parte do programador. 
+
+Entretanto, principalmente no âmbito do desenvolvimento de software comercial, agilidade e facilidade de uso e manutenção são pontos fundamentais. Portanto é comum que pesquisadores e programadores busquem ferramentas que tornem o processo mais acessível tanto para iniciantes quanto profissionais experientes na área. Para fins de contextualização, será realizada aqui uma breve comparação entre bibliotecas e frameworks de IA e ML para a linguagem Python.
+
+O Keras é uma biblioteca de código aberto para criação de redes neurais escrita em Python. Ela atua como uma API, uma interface consistente que permite ao usuário utilizar funções de mais baixo-nível descritas em bibliotecas matemáticas como TensorFlow e Theano \cite{brownlee19}. 
+
+Segundo o site oficial, a biblioteca oferece "APIs simples e consistentes, minimiza o número de ações de usuário necessárias para casos de uso comuns e provém feedback claro e prático em caso de erros por parte do usuário". O Keras se integra também com outros recursos e ferramentas, incluindo as do ecossistema TensorFlow \cite{keras203}.
+
+O TensorFlow é uma biblioteca de código aberto que suporta linguagens como Python, JavaScript e Swift. Segundo a documentação oficial, a biblioteca possui "um completo e flexível ecossistema de ferramentas e recursos de comunidade que permitem que pesquisadores avancem o estado da arte do ML e que desenvolvedores construam e implantem facilmente aplicações com funcionalidades de ML". 
+
+Esse ecossistema engloba ferramentas como o TensorFlow Cloud, que permite configurar o treinamento de redes neurais em servidores na nuvem, e o TensorFlow Extended (TFX), pipeline para implantação de aplicações de machine learning \cite{tf20}.
+
+O Theano é uma biblioteca matemática escrita em Python. Segundo a documentação oficial, a bilbioteca "permite que você defina, otimize e avalie expressões matemáticas envolvendo vetores multi-dimensionais de forma eficiente" \cite{theano20}. Essas funcionalidades são utilizadas por outras bibliotecas como o Keras, que criam abstrações para tornar mais simples a construção de redes neurais mas que para atingir esse objetivo precisam de bibliotecas de apoio \cite{theano16}.
+
+O PyTorch é uma biblioteca escrita em Python baseada na biblioteca Torch, originalmente escrita em Lua. A biblioteca provém funções para definição de funções matemáticas e computação de seus respectivos gradientes, bem como funcionalidades para processamento tanto em CPU quanto em GPU \cite{ketkar17}. 
+
+O XGBoost é uma biblioteca que permite a implementação de algoritmos de machine learning através de um framework de Gradient Boosting, que consiste "em um procedimento de aprendizado que consecutivamente ajusta novos modelos para prover uma estimativa mais precisa da variável de resposta" \cite{natekin13}. Segundo pesquisa conduzida pela equipe do Keras, a XGBoost é a terceira ferramenta de ML mais utilizada por equipes que ficaram no top 5 das competições do site Kaggle em 2019 \cite{keras202}.
+
+O LightGBM é um framework de gradient boosting escrito em Python mas com suporte para as linguagens C e R. Suporta também processamento em CPU e GPU \cite{lgbm20}. Segundo pesquisa conduzida pela equipe do Keras, a XGBoost é a segunda ferramenta de ML mais utilizada por equipes que ficaram no top 5 das competições do site Kaggle em 2019 \cite{keras202}.
+
+\section{Trabalhos Relacionados}
+\label{trab-relacionados} 
+Prasad (\citeyear{prasad03}) descreve técnicas de IA utilizadas no desenvolvimento de sistemas de sugestão para e-commerce, como sugestão baseada em bases de conhecimento pré-definidas, comportamento passado do comprador em questão ou de outros compradores relacionados ou não a ele. Na mesma linha de pesquisa, Wei et al. (\citeyear{wei07}) expõe uma "visão geral de técnicas de recomendação personalizada e propões tópicos de pesquisa futuros".
+
+No que se refere análise do comportamento social dos compradores, existe a abordagem de filtragem colaborativa, que "faz recomendações para o usuário atualmente ativo utilizando vários históricos de avaliação de outros usuários sem analizar o conteúdo do recurso informacional" \cite{chen18}. Um "modelo inteligente" de filtragem colaborativa é apresentado por Li et. al (\citeyear{li19}), que afirma que "em redes sociais de ecommerce, a popularidade de um item está na informação social implícita que é dinâmica e pode afetar as preferências de um usuário.".
+
+Burke (\citeyear{burke02}) utiliza em seu trabalho uma abordagem "interativa, incremental e baseada em casos" para sugestão de produtos a qual "não requer que o usuário tenha uma necessidade completamente especificada". Esse é o mesmo ponto de partida a ser seguido nesse trabalho: realizar sugestões com base em transações passadas, mas sem que haja a necessidade de que o comprador informe o tipo de produto que está buscando ou por qual motivo a compra ou pesquisa está sendo efetuada.
+
+Também no âmbito da aplicação de técnicas de IA, Yager (\citeyear{yager00}) descreve o uso de agentes inteligentes baseados em lógica fuzzy para "determinar que propaganda mostrar em um website, com base nas características do usuário". Aciar et al. (\citeyear{aciar07}) propõe a aplicação de sistemas multi-agente e sistemas de recomendação combinados com uma abordagem que "gere uma análise do comportamento do consumidor, sintetizando informações-chave abstratas que facilitem e melhorem a customização de serviços e levem a um ganho de vendas.".
+
+\section{Considerações do Capítulo}
+Nesse capítulo foram apresentados áreas de conhecimento, tecnologias, técnicas e trabalho acadêmicos que possuem relação com o tema abordado nesse trabalho. No próximo capitulo serão apresentados os materiais e métodos e serem utilizados.
+
+\chapter{Materiais e Métodos}
+\pagestyle{simple} 
+\label{metodos}
+
+Nesse capítulo serão delimitados detalhes relativos à metodologia empregada para o desenvolvimento do trabalho, bem como especificidades do ambiente e ferramentas de software a serem utilizadas.
+
+\section{Metodologia Utilizada}
+
+Visto que um dos objetivos do estudo é aplicar a IA treinada para gerar sugestões de produtos, esse se enquadra na classe de pesquisa qualitativa, ou seja, seus resultados irão nos ajudar a entender os comportamentos dos consumidores contidos na amostra de dados a ser utilizada. Contudo, a parametrização da rede neural muitas vezes envolve valores discretos, e como um dos objetivos é também encontrar a melhor configuração de rede para esse caso de uso, os resultados serão um misto de dados qualitativos e quantitativos.
+
+Assim como descrito no trabalho de Burke (\citeyear{burke02}), a proposta desse trabalho será desenvolver uma aplicação que gere sugestões com base em transações comerciais passadas, mas sem que haja a necessidade de que o comprador informe o tipo de produto que está buscando ou por qual motivo a compra ou pesquisa está sendo efetuada. Relacionando com as abordagens descritas por Prasad (\citeyear{prasad03}), o sistema de sugestão desenvolvido seguirá uma abordagem híbrida, integrando elementos das abordagens ACF e CBR. Quanto à abordagem ACF, o autor explica:
+
+\begin{citacao}
+Essa abordagem baseia-se nas recomendações 'boca-a-boca'. Trata o problema coletando as recomendações/feedbacks prévios de compradores quanto aos produtos que adquiriram, e utiliza esse feedback para recomendar produto a potenciais novos consumidores.
+\end{citacao}
+
+Quanto à abordagem CBR:
+\begin{citacao}
+CBR é uma abordagem de resolução de problemas baseada em experiências prévias. Essas experiências são organizadas em forma de casos, que são então utilizados para resolver novos problemas. (...) No CBR para o processo de seleção e recomendação, cada produto é tratado como um caso.
+\end{citacao}
+
+Inicialmente, será realizada a seleção da base de pedidos a ser utilizada para o treinamento da IA. Serão utilizados repositórios online como Kaggle, Github e UCI para buscar por conjuntos de dados. As bases escolhidas não necessariamente contém informações que identifiquem clientes ou produtos, mas devem ter um código único para identificar essas entidades e, se possível, datas das compras para que possa ser estabelecida não só uma relação entre comprador/produto, mas também com o período no qual a compra ocorreu.
+
+Após a seleção, será criada uma rede neural utilizando a biblioteca Keras em Python. Utilizando o editor Jupyter Notebook será possível prototipar uma estrutura inicial e testá-la até chegar em um código minimamente funcional, uma rede que possa ser treinada e que retorne predições corretas, ainda que considerando apenas uma fração do conjunto de dados total. 
+
+Desse ponto em diante, o desenvolvimento será realizado utilizando o Spyder. Diferente do Jupyter, que organiza o código em "células" e permite a inclusão de comentários com texto formatado, imagens e outros recursos visuais junto ao código, o Spyder funciona de forma mais parecida com um editor de texto convencional. Esse ambiente permite que o código seja organizado com mais concisão e clareza, o que se torna importante a medida que o projeto avança e o número de linhas cresce.
+
+A rede neural passará então por diversas iterações de treinamento, na qual serão testados diferentes parametrizações referentes ao processo de treinamento em si (ex.: número de épocas, batch size) ou à rede (ex.: número de neurônios, camadas e funções de ativação, erro e otimização). Cada teste será registrado de modo que possam ser identificadas as configurações que resultem nos modelos mais precisos e rápidos. Ao final dos testes, os melhores modelos serão utilizados para a geração de sugestões.
+
+Por fim, as sugestões geradas por cada modelo serão comparadas e então analisadas qualitativamente em relação aos dados que as originaram. Ou seja, a partir de uma análise manual dos dados, será possível constatar se as previsões geradas foram relevantes ou não. Caso não sejam, novos testes serão realizados até que seja encontrado o modelo ideal. Essa pesquisa possui, portanto, caráter aplicado e exploratório.
+
+\section{Ambiente de Testes}
+Será utilizado um notebook Acer Nitro 5 rodando Windows 10 Pro com as seguintes configurações:
+\begin{itemize}
+    \item Processador: Intel Core i5-8300H CPU @ 2.30GHz, 4 núcleos, 8 processadores lógicos
+    \item RAM: 8GB
+    \item Armazenamento: 1TB
+\end{itemize}
+
+\section{Cronograma}
+O trabalho será realizado de agosto a novembro de 2020. As tarefas serão realizadas dentro desse período conforme o cronograma (tabela 1).
+
+\begin{table}[ht]
+\centering
+\begin{tabular}{|c|l|l|}
+\hline
+\textbf{Tarefa} & \textbf{Mês de Conclusão} & \textbf{Descrição}\\
+\hline
+1              & Agosto             & Prototipação \\
+2              & Setembro              & Desenvolvimento \\
+3              & Outubro              & Testes de treinamento  \\
+4              & Novembro              & Comparação dos resultados            \\
+5              & Novembro              & Repetição de testes e conclusão     \\
+\hline
+\end{tabular}
+\caption{Cronograma}
+\end{table}
+
+\section{Considerações do Capítulo}
+Nesse capítulo foram apresentadas as metodologias empregadas no desenvolvimento do trabalho, bem como especificidades do ambiente de desenvolvimento e ferramentas, tanto no âmbito do software quanto do hardware. Ao final, foi definido também um cronograma para as atividades.
+
+
+% ----------------------------------------------
+% Finaliza a parte no bookmark do PDF para que se inicie o bookmark na raiz e adiciona espaço de parte no Sumário
+% ----------------------------------------------
+\phantompart
+
+% Arquivo de elementos pós-textuais: referências, apêndices e anexos 
+\input{3-postextual}
+
+% ----------------------------------------------
+\end{document}
+% ----------------------------------------------
+

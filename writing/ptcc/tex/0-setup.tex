@@ -1,0 +1,147 @@
+% Modelo UNISINOS para teses e dissertacoes baseado no abtex2-modelo-trabalho-academico.tex, v-1.9.5 laurocesar Copyright 2012-2015 by abnTeX2 group at http://www.abntex.net.br/ 
+%
+% ----------------------------------------------
+% abnTeX2: Modelo de Trabalho Academico (tese de doutorado, dissertacao de mestrado e trabalhos monograficos em geral) em conformidade com ABNT NBR 14724:2011: Informacao e documentacao - Trabalhos academicos - Apresentacao
+% ----------------------------------------------
+
+% ==============================================
+% ||||||||||||||||||||||||||||||||||||||||||||||
+% ----------------------------------------------
+
+\documentclass[
+	% -- opções da classe memoir --
+	12pt,		% tamanho da fonte
+	%openright,	% capítulos começam em pág ímpar (insere página vazia caso preciso)
+	oneside,	% para impressão em verso e anverso. Oposto a oneside
+	a4paper,	% tamanho do papel. 
+	% -- opções da classe abntex2 --
+	chapter=TITLE,		% títulos de capítulos convertidos em letras maiúsculas
+	%section=TITLE,		% títulos de seções convertidos em letras maiúsculas
+	%subsection=TITLE,	% títulos de subseções convertidos em letras maiúsculas
+	%subsubsection=TITLE,% títulos de subsubseções convertidos em letras maiúsculas
+	% -- opções do pacote babel --
+	english,	% idioma adicional para hifenização
+%	french,		% idioma adicional para hifenização - problemas com circuitikz
+%	spanish,	% idioma adicional para hifenização
+	brazil		% o último idioma é o principal do documento
+	]{abntex2}
+
+% ----------------------------------------------
+% Pacotes de fontes... 
+% ----------------------------------------------
+\usepackage[utf8]{inputenc}	% Codificacao do documento (conversão automática dos acentos)
+\usepackage[T1]{fontenc}	% Selecao de codigos de fonte. Afeta separação de sílabas
+\renewcommand{\ABNTEXchapterfont}{\fontfamily{ptm}\fontseries{sbc}\selectfont} % Familia de fontes times
+\usepackage{mathptmx}	% para utilização de fonte times
+%\usepackage{scrextend}
+% ----------------------------------------------
+% Configuração das fontes
+% ----------------------------------------------
+% Algumas configurações de fontes para capitulos e seções tanto no texto quanto no sumário
+\renewcommand{\ABNTEXchapterfont}{\bfseries}
+\renewcommand{\ABNTEXchapterfontsize}{\Large}
+\renewcommand{\ABNTEXpartfont}{\ABNTEXchapterfont}
+\renewcommand{\ABNTEXpartfontsize}{\ABNTEXchapterfontsize}
+\renewcommand{\cftpartfont}{\normalfont\bfseries}
+\renewcommand{\ABNTEXsectionfont}{\bfseries}
+\renewcommand{\ABNTEXsectionfontsize}{\large}
+\renewcommand{\ABNTEXsubsectionfont}{\normalfont}
+\renewcommand{\ABNTEXsubsectionfontsize}{\normalsize}
+\renewcommand{\cftsubsectionfont}{\normalfont}
+\renewcommand{\ABNTEXsubsubsectionfont}{\slshape}
+\renewcommand{\cftsubsubsectionfont}{\normalfont\slshape}
+\renewcommand{\ABNTEXsubsubsubsectionfont}{\bfseries}
+
+% Para configurar mais níveis configure conforme utilizado acima e comente as duas linhas abaixo
+\settocdepth{subsubsection} % configura sumário para apresentar subseções até o quarto nível
+\setsecnumdepth{subsubsection} % configura para numerar subseções até o quarto nível. Subseções de quinto nível não conterão numeração.
+
+\addto\captionsbrazil{\renewcommand{\listfigurename}{Lista de figuras}} % Altera nome da lista de ilustrações para lista de figuras
+
+% ----------------------------------------------
+% Equações com numeração sequencial
+% ----------------------------------------------
+\counterwithout{equation}{chapter}
+
+% ----------------------------------------------
+% Pacotes básicos 
+% ----------------------------------------------
+\usepackage{lastpage}		% Usado pela ficha catalografica
+\usepackage{indentfirst}	% Indenta o primeiro paragrafo de cada seção.
+\usepackage{color}			% Controle das cores
+\usepackage{graphicx}		% Inclusão de gráficos
+\usepackage{microtype} 		% para melhorias de justificação
+\usepackage{array}
+%\usepackage{gensymb}       % Símbolos
+
+\usepackage{amsmath} 	%--------------------------%
+\usepackage{hyperref} 	%--------------------------%
+\usepackage{bibentry} 	% para inserir refs. bib. no meio do texto
+		
+% ----------------------------------------------
+% Pacotes adicionais
+% ----------------------------------------------
+\usepackage{lipsum}				% para geração de dummy text
+\usepackage{setspace}
+\usepackage{verbatim}
+\usepackage{soulutf8}
+\usepackage{tabularx}
+\usepackage{multirow}
+\usepackage{subfig}
+\usepackage{pdfpages}
+\usepackage{pgfplots}
+  \pgfplotsset{compat=1.12}
+
+%para usar codeblock
+\usepackage{listings}
+\definecolor{dkgreen}{rgb}{0,0.6,0}
+\definecolor{gray}{rgb}{0.5,0.5,0.5}
+\definecolor{mauve}{rgb}{0.58,0,0.82}
+\lstset{frame=tb,
+  language=C,
+  aboveskip=3mm,
+  belowskip=3mm,
+  showstringspaces=false,
+  columns=flexible,
+  basicstyle={\small\ttfamily},
+  numbers=left,
+  numberstyle=\tiny\color{gray},
+  keywordstyle=\color{blue},
+  commentstyle=\color{dkgreen},
+  stringstyle=\color{mauve},
+  breaklines=true,
+  breakatwhitespace=true,
+  tabsize=3
+} 
+
+\usepackage{booktabs}
+\usepackage{adjustbox}
+\usepackage{placeins}
+\usepackage{longtable}
+\usepackage{amssymb}
+
+% ----------------------------------------------
+% Pacotes de citações
+% ----------------------------------------------
+%\usepackage[brazilian,hyperpageref]{backref}	 % Paginas com as citações na bibl
+\usepackage[alf,abnt-emphasize=bf]{abntex2cite}	% Citações padrão ABNT
+
+\DeclareUnicodeCharacter{2800}{\invisible}
+% ==============================================
+% CONFIGURAÇÕES DE PACOTES
+% ==============================================
+
+% ----------------------------------------------
+% Espaçamentos entre linhas e parágrafos 
+% ----------------------------------------------
+% O tamanho do parágrafo é dado por:
+\setlength{\parindent}{1.3cm}
+
+% Controle do espaçamento entre um parágrafo e outro:
+\setlength{\parskip}{0.2cm}  % tente também \onelineskip
+
+% ----------------------------------------------
+% compila o indice
+% ----------------------------------------------
+\makeindex
+
