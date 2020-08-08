@@ -1,3 +1,6 @@
+#!/usr/bin/env python
+# coding: utf-8
+
 import time
 import tensorflow as tf
 from keras.models import Sequential
