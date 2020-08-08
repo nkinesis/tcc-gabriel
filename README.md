@@ -25,10 +25,9 @@ Geração de sugestões de produtos através de IA com base no histórico de com
 ## Registrar comandos
 - Executar "nano .bashrc" dentro da pasta /home/username
 
-    ''' 
+
     alias tcc-activate='source /home/ullmann/envs/bin/activate'
     alias tcc-gotorepo='cd /home/ullmann/tcc-gabriel'
-    '''
 
 ## Executar processos no ssh
 - Conectar utilizando o comando "ssh usuario@servidor"
