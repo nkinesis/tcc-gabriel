@@ -1,13 +1,13 @@
 #!/usr/bin/env python
 # coding: utf-8
 
+import sys
 import time
+import pandas as pd
+import numpy as np
 import tensorflow as tf
 from keras.models import Sequential
-import pandas as pd
 from keras.layers import Dense
-import numpy as np
-from pymongo import MongoClient
 from numpy import array
 from numpy import argmax
 from sklearn.preprocessing import LabelEncoder
@@ -43,8 +43,8 @@ model.compile(loss='categorical_crossentropy',
               optimizer='sgd',
               metrics=['accuracy'])
 model.fit(onehot_entradas, onehot_saidas,
-          batch_size=10,
-          epochs=1,
+          batch_size=sys.argv[1],
+          epochs=sys.argv[2],
           verbose=1,
           validation_data=(onehot_entradas,onehot_saidas))
 
