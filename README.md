@@ -27,3 +27,11 @@ Geração de sugestões de produtos através de IA com base no histórico de com
     alias tcc-activate='source /home/ullmann/envs/bin/activate'
     alias tcc-gotorepo='cd /home/ullmann/tcc-gabriel'
     '''
+
+# Executar processos no ssh
+- Conectar utilizando o comando "ssh usuario@servidor"
+- Digite "screen"
+- Inicie o processo desejado
+- Pressione Ctrl-A e depois Ctrl-D. Isso irá separar a sessão do "screen"
+- Faça logout
+- Ao logar novamente, digite "screen -r" para voltar ao processo
