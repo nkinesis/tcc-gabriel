@@ -43,8 +43,8 @@ model.compile(loss='categorical_crossentropy',
               optimizer='sgd',
               metrics=['accuracy'])
 model.fit(onehot_entradas, onehot_saidas,
-          batch_size=sys.argv[1],
-          epochs=sys.argv[2],
+          batch_size=int(sys.argv[1]),
+          epochs=int(sys.argv[2]),
           verbose=1,
           validation_data=(onehot_entradas,onehot_saidas))
 

@@ -19,3 +19,11 @@ Geração de sugestões de produtos através de IA com base no histórico de com
 ## Clustering
 - Rodar algoritmo de clustering: python .\clusterizeDataset.py [num_de_clusters]
 - Rodar servidor de sugestões: python .\recommendationAPI.py
+
+## Registrar comandos
+- Executar "nano .bashrc" dentro da pasta /home/username
+
+    ''' 
+    alias tcc-activate='source /home/ullmann/envs/bin/activate'
+    alias tcc-gotorepo='cd /home/ullmann/tcc-gabriel'
+    '''
