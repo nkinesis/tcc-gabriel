@@ -42,7 +42,7 @@ model.add(Dense(units=saidas_units, activation='softmax'))
 model.compile(loss='categorical_crossentropy',
               optimizer='sgd',
               metrics=['accuracy'])
-stats = model.fit(onehot_entradas, onehot_saidas,
+history = model.fit(onehot_entradas, onehot_saidas,
           batch_size=int(sys.argv[1]),
           epochs=int(sys.argv[2]),
           verbose=1,
@@ -50,8 +50,12 @@ stats = model.fit(onehot_entradas, onehot_saidas,
 
 # Salvar estatísticas
 timestamp = time.strftime("%Y-%m-%d_%H-%M-%S")
+acc_size = len(history.history['accuracy'])
+loss_size = len(history.history['loss'])
 with open("./results" + timestamp + ".txt", 'w+') as f:
-    f.write(str(stats))
+    f.write(str(history.history['accuracy'][acc_size-1]))
+    f.write(";")
+    f.write(str(history.history['loss'][acc_size-1]))
 print("Results saved.")
 
 # Salvar modelo em hdf5 (Hierarchical Data Format)
