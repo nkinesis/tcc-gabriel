@@ -36,31 +36,23 @@ saidas_units = len(np.unique(x))
 # criar modelo sequencial do keras
 model = Sequential()
 
-# original: 64 units, relu, 2 inputs
+# original: 64 units, relu
 model.add(Dense(units=64, activation='relu', input_dim=num_inputs))
 model.add(Dense(units=saidas_units, activation='softmax'))
 model.compile(loss='categorical_crossentropy',
               optimizer='sgd',
               metrics=['accuracy'])
-model.fit(onehot_entradas, onehot_saidas,
+stats = model.fit(onehot_entradas, onehot_saidas,
           batch_size=int(sys.argv[1]),
           epochs=int(sys.argv[2]),
           verbose=1,
           validation_data=(onehot_entradas,onehot_saidas))
 
-y=model.predict(onehot_entradas)
-predicted = np.round(y)
-
-# Salvar predições
-counter = 0
+# Salvar estatísticas
 timestamp = time.strftime("%Y-%m-%d_%H-%M-%S")
 with open("./results" + timestamp + ".txt", 'w+') as f:
-    for row in predicted:
-        f.write("[")
-        for position in row:
-            f.write(" %s " % position)
-        f.write("]\n")
-print("Predictions saved.")
+    f.write(str(stats))
+print("Results saved.")
 
 # Salvar modelo em hdf5 (Hierarchical Data Format)
 model.save('./model' + timestamp + '.h5')
