@@ -1,17 +1,23 @@
 #!/usr/bin/env python
 # coding: utf-8
 
+import gc
 import sys
 import time
 import pandas as pd
 import numpy as np
-import tensorflow as tf
-from keras.models import Sequential
-from keras.layers import Dense
 from numpy import array
 from numpy import argmax
+import tensorflow as tf
+from keras.layers import Dense
+from keras.models import Sequential
 from sklearn.preprocessing import LabelEncoder
 from sklearn.preprocessing import OneHotEncoder
+from sklearn.utils import compute_class_weight
+
+class MyCustomCallback(tf.keras.callbacks.Callback):
+    def on_epoch_end(self, epoch, logs=None):
+        gc.collect()
 
 # carregar arquivo e formatar
 url = './test-uci.csv'
@@ -29,9 +35,15 @@ num_inputs = len(onehot_entradas.columns) + 1
 onehot_entradas['month'] = entradas.month
 onehot_entradas = onehot_entradas.astype('uint8')
 
+# computar balanceamento de classes
+saidas_list = list(onehot_saidas.values)
+y_integers = np.argmax(saidas_list, axis=1)
+y_labels = np.unique(y_integers)
+classWeight = compute_class_weight('balanced', y_labels, y_integers)
+classWeight = dict(enumerate(classWeight))
+
 # contar número de categorias para informar na saída
-x = saidas['modeProd'].to_numpy()
-saidas_units = len(np.unique(x))
+saidas_units = len(y_labels)
 
 # criar modelo sequencial do keras
 model = Sequential()
@@ -46,7 +58,9 @@ history = model.fit(onehot_entradas, onehot_saidas,
           batch_size=int(sys.argv[1]),
           epochs=int(sys.argv[2]),
           verbose=1,
-          validation_data=(onehot_entradas,onehot_saidas))
+          validation_data=(onehot_entradas,onehot_saidas),
+          callbacks=[MyCustomCallback()],
+          class_weight=classWeight)
 
 # Salvar estatísticas
 timestamp = time.strftime("%Y-%m-%d_%H-%M-%S")
