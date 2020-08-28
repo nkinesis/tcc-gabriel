@@ -43,5 +43,5 @@ df.to_csv('./best_selling_by_client.csv', index=False)
 
 # salvar produtos únicos
 prods = np.unique(retail['modeProd'])
-prods = pd.DataFrame(prods, columns=['productId'])
+prods = pd.DataFrame(prods, columns=['product_id'])
 prods.to_csv('./unique_products.csv', index=False)
