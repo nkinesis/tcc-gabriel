@@ -35,4 +35,4 @@ for country in country_list:
 
 # slavar mais vendidos por país
 df = pd.DataFrame(best_selling_by_country, columns=['country', 'product_id'])
-df.to_csv('C:/Users/Gabriel Ullmann/Desktop/best_selling_by_country.csv', index=False)
+df.to_csv('./best_selling_by_country.csv', index=False)

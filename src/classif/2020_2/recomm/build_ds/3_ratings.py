@@ -77,4 +77,4 @@ ratings['client_id'] = encoded_users
 ratings['client_id'] = ratings['client_id'].astype('int32')
 
 # salvar ratings encodados
-ratings.to_csv('C:/Users/Gabriel Ullmann/Desktop/gabriel_ratings2.csv', index=False)
+ratings.to_csv('./gabriel_ratings2.csv', index=False)

@@ -39,9 +39,9 @@ for client in client_list:
 
 # salvar mais vendidos por cliente
 df = pd.DataFrame(best_selling_by_client, columns=['client_id', 'country', 'product_id'])
-df.to_csv('C:/Users/Gabriel Ullmann/Desktop/best_selling_by_client.csv', index=False)  
+df.to_csv('./best_selling_by_client.csv', index=False)  
 
 # salvar produtos únicos
 prods = np.unique(retail['modeProd'])
 prods = pd.DataFrame(prods, columns=['productId'])
-prods.to_csv('C:/Users/Gabriel Ullmann/Desktop/unique_products.csv', index=False)
+prods.to_csv('./unique_products.csv', index=False)
