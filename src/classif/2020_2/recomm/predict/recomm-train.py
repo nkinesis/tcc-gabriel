@@ -1,13 +1,21 @@
+#!/usr/bin/env python
+# coding: utf-8
+
+import os
+import sys
 import numpy as np
 import pandas as pd
-import matplotlib.pyplot as plt
-import os
 import warnings
+# import matplotlib.pyplot as plt
 
 from keras.layers import Input, Embedding, Flatten, Dot, Dense, Concatenate
 from keras.models import Model
 
 warnings.filterwarnings('ignore')
+
+# validate params
+if not sys.argv[1].isdigit():
+    sys.exit('Num de épocas ' + sys.argv[1] + ' não é um valor inteiro.')
 
 # 1 load
 dataset = pd.read_csv('./gabriel_ratings2.csv')
@@ -48,11 +56,11 @@ from keras.models import load_model
 if os.path.exists('regression_model2.h5'):
     model2 = load_model('regression_model2.h5')
 else:
-    history = model2.fit([train.client_id, train.product_id], train.rating, epochs=5, verbose=1)
+    history = model2.fit([train.client_id, train.product_id], train.rating, epochs=sys.argv[1], verbose=1)
     model2.save('regression_model2.h5')
-    plt.plot(history.history['loss'])
-    plt.xlabel("Epochs")
-    plt.ylabel("Training Error")
+    # plt.plot(history.history['loss'])
+    # plt.xlabel("Epochs")
+    # plt.ylabel("Training Error")
 
 # 6 test
 model2.evaluate([test.client_id, test.product_id], test.rating)
