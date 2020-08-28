@@ -14,6 +14,9 @@ from keras.models import Model
 warnings.filterwarnings('ignore')
 
 # validate params
+if len(sys.argv) < 1:
+    sys.exit('Parâmetros obrigatórios: informe num de épocas')
+
 if not sys.argv[1].isdigit():
     sys.exit('Num de épocas ' + sys.argv[1] + ' não é um valor inteiro.')
 
@@ -56,7 +59,7 @@ from keras.models import load_model
 if os.path.exists('regression_model2.h5'):
     model2 = load_model('regression_model2.h5')
 else:
-    history = model2.fit([train.client_id, train.product_id], train.rating, epochs=sys.argv[1], verbose=1)
+    history = model2.fit([train.client_id, train.product_id], train.rating, epochs=int(sys.argv[1]), verbose=1)
     model2.save('regression_model2.h5')
     # plt.plot(history.history['loss'])
     # plt.xlabel("Epochs")
