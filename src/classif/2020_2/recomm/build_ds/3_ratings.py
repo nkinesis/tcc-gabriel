@@ -70,10 +70,10 @@ encoder = OrdinalEncoder()
 encoded_products = encoder.fit_transform(ratings['product_id'].values.reshape(-1, 1))
 encoded_clients = encoder.fit_transform(ratings['client_id'].values.reshape(-1, 1))
 
-ratings['product_id'] = encoded_books
+ratings['product_id'] = encoded_products
 ratings['product_id'] = ratings['product_id'].astype('int32')
 
-ratings['client_id'] = encoded_users
+ratings['client_id'] = encoded_clients
 ratings['client_id'] = ratings['client_id'].astype('int32')
 
 # salvar ratings encodados
