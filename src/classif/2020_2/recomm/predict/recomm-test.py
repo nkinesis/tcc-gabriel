@@ -17,13 +17,13 @@ if len(sys.argv) < 2:
     sys.exit('Parâmetros obrigatórios: informe intervalo inicial/final')
 
 if not sys.argv[1].isdigit():
-    sys.exit('Inicial ' + sys.argv[1] + ' não é um valor inteiro.')
+    sys.exit('Cliente ' + sys.argv[1] + ' não é um valor inteiro.')
 
 if not sys.argv[2].isdigit():
-    sys.exit('Final ' + sys.argv[2] + ' não é um valor inteiro.')
+    sys.exit('Produto ' + sys.argv[2] + ' não é um valor inteiro.')
 
-p_begin = int(sys.argv[1])
-p_end = int(sys.argv[2])
+p_client_id = int(sys.argv[1])
+p_product_id = int(sys.argv[2])
 
 # 2 load ds
 dataset = pd.read_csv('./gabriel_ratings2.csv')
@@ -38,12 +38,18 @@ else:
     print('Modelo regression_model2.h5 não encontrado.')
 
 # 5 predict
-predictions = model2.predict([
-        test.client_id[p_begin:p_end], 
-        test.product_id[p_begin:p_end]
-    ])
+inputs = [pd.Series([p_client_id], index =[1]), 
+            pd.Series([p_product_id], index =[1])
+         ]
 
-# cv = test.client_id.values
-# pv = test.product_id.values
-lp = len(predictions)
-[print(test.client_id.iloc[i], test.product_id.iloc[i], predictions[i if i < lp else lp-1], test.rating.iloc[i]) for i in range(p_begin,p_end)]
+predictions = model2.predict(inputs)
+real = test[(test.client_id == p_client_id) & (test.product_id == p_product_id)]
+real = real.values[0][2] if len(real) > 0 else None
+
+if real:
+    lp = len(predictions)
+    print("=====")
+    print("Rating previsto/real para o cli " + str(p_client_id) + " / prod " + str(p_product_id))
+    [print(predictions[0], real)]
+else:
+    print("Par produto/cliente não encontrado.")
