@@ -79,6 +79,10 @@ ratings['product_id'] = ratings['product_id'].astype('int32')
 ratings['client_id'] = encoded_clients
 ratings['client_id'] = ratings['client_id'].astype('int32')
 
+#salvar produtos encodados
+all_products['encoded_id'] = encoded_products
+all_products.to_csv('./unique_products_encoded.csv', index=False)
+
 # salvar ratings encodados
 ratings.to_csv('./gabriel_ratings2.csv', index=False)
 print("Concluído.")
