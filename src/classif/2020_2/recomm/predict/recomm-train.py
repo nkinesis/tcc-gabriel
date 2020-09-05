@@ -61,9 +61,7 @@ if os.path.exists('regression_model2.h5'):
 else:
     history = model2.fit([train.client_id, train.product_id], train.rating, epochs=int(sys.argv[1]), verbose=1)
     model2.save('regression_model2.h5')
-    # plt.plot(history.history['loss'])
-    # plt.xlabel("Epochs")
-    # plt.ylabel("Training Error")
+    #print(history.history['loss'])
 
 # 6 test
 model2.evaluate([test.client_id, test.product_id], test.rating)
