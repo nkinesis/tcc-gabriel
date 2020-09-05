@@ -21,7 +21,7 @@ if not sys.argv[1].isdigit():
     sys.exit('Num de épocas ' + sys.argv[1] + ' não é um valor inteiro.')
 
 # 1 load
-dataset = pd.read_csv('./gabriel_ratings2.csv')
+dataset = pd.read_csv('../build_ds/gabriel_ratings2.csv')
 
 # 2 train/test split
 from sklearn.model_selection import train_test_split

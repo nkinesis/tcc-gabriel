@@ -26,7 +26,7 @@ p_client_id = int(sys.argv[1])
 p_product_id = int(sys.argv[2])
 
 # 2 load ds
-dataset = pd.read_csv('./gabriel_ratings2.csv')
+dataset = pd.read_csv('../build_ds/gabriel_ratings2.csv')
 
 # 3 train/test split
 train, test = train_test_split(dataset, test_size=0.2, random_state=42)

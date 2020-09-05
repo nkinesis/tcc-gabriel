@@ -10,8 +10,12 @@ from keras.models import load_model
 # definir quantos produtos serão considerados
 top_x = 10
 
+# caminho para o ds base está definido em um arquivo por conveniência
+# abrir arquivo e definir path
+f = open("path.txt", "r")
+url = f.read()
+
 # carregar arquivo, substituir NaNs por 0, cast para int
-url = '/home/ullmann/tcc-gabriel/data/uci-online-retail-source/online_retail.csv'
 retail = pd.read_csv(url, delimiter=',')
 retail = retail.fillna(0)
 retail['clientId'] = retail['clientId'].astype('int32')
@@ -27,7 +31,7 @@ for client in client_list:
     best_selling = filtered['modeProd'].value_counts() 
     count = 0
     countc += 1
-    print(countc)
+    print("Analisando cliente " + str(countc) + "/" + str(len(client_list)))
     for product in best_selling.keys():
         filtered = retail[retail.clientId == client]
         best_selling_by_client.append([client, filtered.values[0][7], product])
@@ -45,3 +49,4 @@ df.to_csv('./best_selling_by_client.csv', index=False)
 prods = np.unique(retail['modeProd'])
 prods = pd.DataFrame(prods, columns=['product_id'])
 prods.to_csv('./unique_products.csv', index=False)
+print("Concluído.")

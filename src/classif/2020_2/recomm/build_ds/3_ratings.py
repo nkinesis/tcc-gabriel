@@ -27,6 +27,7 @@ clients = np.unique(by_client['client_id'])
 
 # checar condições rating 3 e 2
 for client in clients:
+    print("Ratings 3 e 2, analisando cliente: " + str(client))
     filtered_by_client = by_client[by_client.client_id == client]
     current_country = filtered_by_client.values[0][1]
     client_products = filtered_by_client['product_id'].values
@@ -39,6 +40,7 @@ for client in clients:
 
 # checar condições rating 4
 for client in clients:
+    print("Rating 4, analisando cliente: " + str(client))
     filtered_by_client = by_client[by_client.client_id == client]
     current_country = filtered_by_client.values[0][1]
     filtered_by_country = by_country[(by_country.country == current_country)]
@@ -53,6 +55,7 @@ rated = pd.DataFrame(rated_ds, columns=['client_id', 'product_id', 'rating'])
 products_not_included = set(all_products['product_id']) - set(rated['product_id'])
 clients = np.unique(by_client['client_id'])
 for client in clients:
+    print("Rating 1, analisando cliente: " + str(client))
     for product in products_not_included:
         rated_ds.append([client, product, 1])
 
@@ -78,3 +81,4 @@ ratings['client_id'] = ratings['client_id'].astype('int32')
 
 # salvar ratings encodados
 ratings.to_csv('./gabriel_ratings2.csv', index=False)
+print("Concluído.")

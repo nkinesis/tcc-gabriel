@@ -10,8 +10,10 @@ from keras.models import load_model
 # definir quantos produtos serão considerados
 top_x = 10
 
-# carregar
-url = '/home/ullmann/tcc-gabriel/data/uci-online-retail-source/online_retail.csv'
+# caminho para o ds base está definido em um arquivo por conveniência
+# abrir arquivo e definir path
+f = open("path.txt", "r")
+url = f.read()
 retail = pd.read_csv(url, delimiter=',')
 
 # contar países únicos
@@ -22,7 +24,7 @@ best_selling_by_country =[]
 for country in country_list:
     filtered = retail[retail.country == country]
     best_selling = filtered['modeProd'].value_counts()
-    #print(country + ": " + str(len(filtered)))
+    print(country + ": " + str(len(filtered)))
     
     count = 0
     for product in best_selling.keys():
@@ -36,3 +38,4 @@ for country in country_list:
 # slavar mais vendidos por país
 df = pd.DataFrame(best_selling_by_country, columns=['country', 'product_id'])
 df.to_csv('./best_selling_by_country.csv', index=False)
+print("Concluído.")
