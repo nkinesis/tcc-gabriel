@@ -28,6 +28,7 @@ Geração de sugestões de produtos através de IA com base no histórico de com
 
     alias tcc-activate='source /home/ullmann/envs/bin/activate'
     alias tcc-gotorepo='cd /home/ullmann/tcc-gabriel'
+    alias tcc-gototest='cd /home/ullmann/tcc-gabriel/src/classif/2020_2/recomm'
 
 ## Executar processos no ssh
 - Conectar utilizando o comando "ssh usuario@servidor"
