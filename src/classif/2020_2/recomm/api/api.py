@@ -25,7 +25,7 @@ def enable_cors():
 def hello():
     return "O servidor está online! Data/hora atual: " + str(datetime.datetime.now())  
 
-@app.route("/getRating", method=["POST"])
+@app.route("/getEncodedRating", method=["POST"])
 def getRating():
     try:
         clientId = int(request.params.get("clientId"))
