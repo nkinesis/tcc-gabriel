@@ -69,6 +69,7 @@ ratings = pd.read_csv(url, delimiter=',')
 
 # encodar produtos e clientes, ordinal encoding
 # cada registro passa a ser identificado por 1 inteiro
+print('Encodando produtos/clientes...')
 encoder = OrdinalEncoder()
 encoded_products = encoder.fit_transform(ratings['product_id'].values.reshape(-1, 1))
 encoded_clients = encoder.fit_transform(ratings['client_id'].values.reshape(-1, 1))
@@ -80,6 +81,8 @@ ratings['client_id'] = encoded_clients
 ratings['client_id'] = ratings['client_id'].astype('int32')
 
 #salvar produtos encodados
+print('Salvando mapa de encoding...')
+encoded_products = encoder.fit_transform(all_products['product_id'].values.reshape(-1, 1))
 all_products['encoded_id'] = encoded_products
 all_products.to_csv('./unique_products_encoded.csv', index=False)
 
