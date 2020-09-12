@@ -14,7 +14,7 @@ warnings.filterwarnings('ignore')
 # sys.argv[2] - Product ID
 
 if len(sys.argv) < 2:
-    sys.exit('Parâmetros obrigatórios: informe intervalo inicial/final')
+    sys.exit('Parâmetros obrigatórios: informe intervalo inicial/final, nome do arquivo de avaliações')
 
 if not sys.argv[1].isdigit():
     sys.exit('Cliente ' + sys.argv[1] + ' não é um valor inteiro.')
@@ -26,7 +26,7 @@ p_client_id = int(sys.argv[1])
 p_product_id = int(sys.argv[2])
 
 # 2 load ds
-dataset = pd.read_csv('../build_ds/gabriel_ratings2.csv')
+dataset = pd.read_csv('../build_ds/' + sys.argv[3])
 
 # 3 train/test split
 train, test = train_test_split(dataset, test_size=0.2, random_state=42)

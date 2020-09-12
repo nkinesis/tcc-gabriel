@@ -23,7 +23,7 @@ country_list = np.unique(retail['country'])
 best_selling_by_country =[]
 for country in country_list:
     filtered = retail[retail.country == country]
-    best_selling = filtered['modeProd'].value_counts()
+    best_selling = filtered['product_id'].value_counts()
     print(country + ": " + str(len(filtered)))
     
     count = 0

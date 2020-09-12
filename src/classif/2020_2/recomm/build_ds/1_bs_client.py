@@ -28,7 +28,7 @@ best_selling_by_client = []
 countc = 0
 for client in client_list:
     filtered = retail[retail.clientId == client]
-    best_selling = filtered['modeProd'].value_counts() 
+    best_selling = filtered['product_id'].value_counts() 
     count = 0
     countc += 1
     print("Analisando cliente " + str(countc) + "/" + str(len(client_list)))
@@ -46,7 +46,7 @@ df = pd.DataFrame(best_selling_by_client, columns=['client_id', 'country', 'prod
 df.to_csv('./best_selling_by_client.csv', index=False)  
 
 # salvar produtos únicos
-prods = np.unique(retail['modeProd'])
+prods = np.unique(retail['product_id'])
 prods = pd.DataFrame(prods, columns=['product_id'])
 prods.to_csv('./unique_products.csv', index=False)
 print("Concluído.")

@@ -15,13 +15,13 @@ warnings.filterwarnings('ignore')
 
 # validate params
 if len(sys.argv) < 1:
-    sys.exit('Parâmetros obrigatórios: informe num de épocas')
+    sys.exit('Parâmetros obrigatórios: informe num de épocas, nome do arquivo de avaliações')
 
 if not sys.argv[1].isdigit():
     sys.exit('Num de épocas ' + sys.argv[1] + ' não é um valor inteiro.')
 
 # 1 load
-dataset = pd.read_csv('../build_ds/gabriel_ratings2.csv')
+dataset = pd.read_csv('../build_ds/' + sys.argv[2])
 
 # 2 train/test split
 from sklearn.model_selection import train_test_split
