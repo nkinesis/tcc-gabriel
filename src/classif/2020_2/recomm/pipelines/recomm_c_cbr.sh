@@ -5,3 +5,4 @@ python 3_ratings_c_cbr.py
 cd ../predict
 python recomm-train.py 3 c_cbr.csv
 python recomm-test.py 123 456 c_cbr.csv
+date

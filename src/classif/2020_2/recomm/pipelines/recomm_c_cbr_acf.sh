@@ -6,3 +6,4 @@ python 3_ratings_c_cbr_acf.py
 cd ../predict
 python recomm-train.py 3 c_cbr_acf.csv
 python recomm-test.py 123 456 c_cbr_acf.csv
+date
