@@ -14,7 +14,7 @@ top_x = 10
 # abrir arquivo e definir path
 f = open("path.txt", "r")
 url = f.read()
-retail = pd.read_csv(url, delimiter=',')
+retail = pd.read_csv(url.replace("\n", ""), delimiter=',')
 
 # contar países únicos
 country_list = np.unique(retail['country'])

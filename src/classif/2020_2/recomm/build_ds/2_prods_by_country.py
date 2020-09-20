@@ -7,7 +7,7 @@ f = open("path.txt", "r")
 url = f.read()
 
 # carregar arquivo, substituir NaNs por 0, cast para int
-source = pd.read_csv(url, delimiter=',')
+source = pd.read_csv(url.replace("\n", ""), delimiter=',')
 source = source.fillna(0)
 source['clientId'] = source['clientId'].astype('int32')
 f.close()
