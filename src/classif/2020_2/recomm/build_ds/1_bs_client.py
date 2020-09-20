@@ -34,7 +34,9 @@ for client in client_list:
     print("Analisando cliente " + str(countc) + "/" + str(len(client_list)))
     for product in best_selling.keys():
         filtered = retail[retail.clientId == client]
-        best_selling_by_client.append([client, filtered.values[0][7], product])
+        #best_selling_by_client.append([client, filtered.values[0][7], product])
+        search_idx = np.where(retail.columns.values == 'country')[0][0]
+        best_selling_by_client.append([client, filtered.values[0][search_idx], product])
         if count < top_x: # top X
             count += 1
         else:
