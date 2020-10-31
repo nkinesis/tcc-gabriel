@@ -1,1 +1,0 @@
-/home/ullmann/tcc-gabriel/data/uci-online-retail-2/online_retail_II.csv
