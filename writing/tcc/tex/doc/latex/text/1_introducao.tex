@@ -1,0 +1,40 @@
+\chapter{Introdução}
+\pagestyle{simple} 
+
+O Brasil é o país com maior faturamento em \textit{e-commerce} na América Latina, faturando R\$ 133 bi em 2018 \cite{ebit19}. No mundo, esse mercado somou US\$ 2,8 tri em vendas no mesmo ano \cite{shopify19}. Em 2020, devido a pandemia do novo Coronavírus, observou-se um aumento das vendas online em várias partes do mundo. Enquanto no Brasil 61\% dos consumidores aumentaram volume de compras online devido ao isolamento social \cite{sbvc20}, nos EUA a rede Walmart reportou um aumento de 97\% nas vendas por e-commerce no segundo trimestre de 2020 \cite{perez20}.
+
+De forma a se destacar em meio a milhares de lojas online, empresas do ramo estão buscando levar aos consumidores produtos e serviços que sejam mais relevantes em suas vidas diárias. Para cumprir esse objetivo, é fundamental entender os hábitos dos mesmos, e essa compreensão pode ser alcançada através da análise da informação que os empreendimentos possuem sobre as compras de seus clientes. Além das técnicas estatísticas convencionais, abordagens de Inteligência Artificial e \textit{Machine Learning} têm se tornado populares recentemente para realizar esse tipo de inferência \cite{rheude19}.
+
+Esse projeto propõe a utilização de \textit{Machine Learning} e \textit{Deep Learning} para inferir as preferências de consumidores e fazer sugestões de produtos com base em um histórico de compras. Essas sugestões são geradas com base em uma métrica de avaliação, que por sua vez é inferida a partir do volume de vendas dos produtos contidos na base de dados. Clientes são correlacionados por um atributo comum - o país ou região de origem - de forma que consumidores que residem nos mesmos locais tendem a receber sugestões semelhantes.
+
+As sugestões podem chegar ao cliente das mais diferentes formas, seja por \textit{e-mail}, mídias sociais ou notificações dentro da loja virtual. Contudo, esse trabalho não foca na implementação prática e visual de uma aplicação de \textit{e-commerce} mas sim na seleção e análise de dados necessária para gerar sugestões a serem consumidas por uma aplicação desse tipo.
+
+Foram utilizados nesse estudo 3 \textit{datasets}, todos compilações de pedidos vendidos através de plataformas de \textit{e-commerce}. Esses conjuntos de dados foram encontrados em repositórios públicos como Kaggle e UCI \textit{Machine Learning}.
+
+\section{Tema} \label{tema}
+O trabalho tem como tema o desenvolvimento de uma rede neural com a finalidade de gerar sugestões de produtos para usuários de um \textit{e-commerce} com base em seu histórico de compra.
+
+\section{Questões} \label{quest}
+A questão central dessa pesquisa: é possível inferir as preferências de compra de um consumidor utilizando redes neurais, mesmo sem que haja avaliação direta do consumidor quanto a sua satisfação com a compra realizada? Foram levantadas também questões secundárias, tais como:
+\begin{enumerate}
+\item Qual é a estrutura de rede neural mínima necessária para realizar essas inferências?
+\item Como os diferentes métodos de geração de avaliações interferem nas sugestões geradas?
+\end{enumerate}
+
+\section{Justificativa} \label{justif}
+Com a recente popularização de técnicas de Inteligência Artificial e \textit{Machine Learning} e sua ampla implementação em aplicações empresariais, torna-se relevante o desenvolvimento de um modelo de análise e recomendação de produtos que possa ser largamente utilizado em sistemas voltados para a área de vendas.
+
+Diferentemente de trabalhos como os de \citedir{chen18}, \citedir{li05}, \citedir{li19}, \citedir{melville02}, que criam sistemas de recomendação baseados em avaliações de produtos definidas diretamente pelos usuários, esse trabalho visa realizar recomendações através de \textit{datasets} desprovidos de avaliações diretas e busca portanto inferí-las com base em outras variáveis. \textit{Datasets} desse tipo podem ser encontrados em repositórios públicos na Internet e são provenientes de sistemas de controles de vendas que não permitem avaliação por parte dos usuários.
+
+\section{Objetivos} \label{objs}
+
+Este trabalho tem os seguintes objetivos:
+
+\begin{enumerate}
+\item Obtenção de \textit{datasets} de pedidos (\textit{Big Data}) que não contenham avaliações de clientes, mas somente dados básicos sobre o item comprado e o comprador. 
+\item Definição de métodos para inferir as avaliações de clientes a partir de métricas estatísticas.
+\item Processamento dos \textit{datasets} originais de forma a relacioná-los com as avaliações inferidas para cada caso.
+\item Criação de uma rede neural em Python utilizando a biblioteca Keras.
+\item Treinamento e teste da rede neural com diferentes parametrizações, a fim de definir a configuração mais otimizada para os problemas em questão.
+\item Aplicação da IA treinada para gerar sugestões de produtos a partir dos \textit{datasets} selecionadas.
+\end{enumerate}

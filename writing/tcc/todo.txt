@@ -1,1 +1,0 @@
-incluir tex/pdf para backup

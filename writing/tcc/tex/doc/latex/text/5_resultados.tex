@@ -1,0 +1,105 @@
+\chapter{Resultados} \label{resultados}
+
+\section{Avaliações}
+Após terem sido geradas para todos os datasets, as medidas estatísticas de posição e dispersão dessa avaliações foram compiladas (Tabela \ref{tab:analise-ds}). A partir da análise do 1º coeficiente de Pearson, pode-se concluir que as avaliações para todos os conjuntos apresentaram assimetria negativa, ou seja, valores de avaliação altos aparecem com mais frequência na amostra do que os baixos. Isso se comprova na observação da mediana e moda, que foi maior ou igual a 3 para todos os datasets.
+
+A partir desses dados, pode-se concluir que os produtos presentes nos datasets analisados apresentaram alto volume de vendas na maioria dos casos. Caso houvesse um dataset repleto de produtos com baixo volume de vendas, as avaliações teriam comportamento inverso, tendendo a valores mais baixos (assimetria positiva).
+
+\begin{table}[ht]
+\begin{tabular}{@{}llrrrr@{}}
+\toprule
+\multicolumn{1}{c}{\textbf{Método}} & \multicolumn{1}{c}{\textbf{Dataset}} & \multicolumn{1}{c}{\textbf{Média}} & \multicolumn{1}{c}{\textbf{Mediana}} & \multicolumn{1}{c}{\textbf{Moda}} & \multicolumn{1}{l}{\textbf{Coef. Pearson}} \\ \midrule
+FC-Inter-Categoria                  & Brazilian retail                     & 3,41377                            & 4                                    & 4                                 & -184,38\%                                  \\
+FC-Geral                            & Brazilian retail                     & 3,52950                            & 4                                    & 4                                 & -174,78\%                                  \\
+FC-Categoria                        & Brazilian retail                     & 3,55913                            & 4                                    & 4                                 & -167,57\%                                  \\
+FC-Inter-Categoria                  & Online Retail 1                      & 2,89565                            & 3                                    & 3                                 & -87,41\%                                   \\
+FC-Inter-Categoria                  & Online Retail 2                      & 2,90716                            & 3                                    & 3                                 & -84,47\%                                   \\
+FC-Geral                            & Online Retail 1                      & 2,99107                            & 3                                    & 3                                 & -13,03\%                                   \\
+FC-Categoria                        & Online Retail 1                      & 2,99187                            & 3                                    & 3                                 & -11,77\%                                   \\
+FC-Geral                            & Online Retail 2                      & 2,99361                            & 3                                    & 3                                 & -11,06\%                                   \\
+FC-Categoria                        & Online Retail 2                      & 2,99415                            & 3                                    & 3                                 & -10,02\%                                   \\ \bottomrule
+\end{tabular}
+\caption{Atributos estatísticos das previsões geradas}
+\label{tab:analise-ds}
+\end{table}
+
+Também para determinar se as avaliações pertencem a uma distribuição normal, a amostra foi analisada utilizando o teste de Anderson-Darling. O valor obtido foi de 1811063,02. Para um intervalo de confiança de 95\%, pode-se rejeitar a hipótese de normalidade dos dados. 
+
+\textcolor{blue}{Gabriel: o teste que fiz com o coeficiente de pearson não é suficiente para determinar que a distribuição não é normal? é preciso definir esses testes na fundamentação?}
+
+\section{Recomendações - Cenário 1} \label{cenario1}
+No primeiro cenário de testes, recomendações foram geradas para o \textit{dataset} Online Retail utilizando a abordagem de FC por categoria. Nesse caso, o critério considerado para a categorização foi o país de origem do cliente.
+
+Os 5 produtos que mais receberam avaliação 4 conforme a análise constam na Tabela \ref{tab:a4}. Nessa amostra, todos os produtos foram considerados boas recomendações para 8 em cada 10 clientes da base. A partir disso, pode-se concluir que esse produtos possuem alta demanda em todos os países analisados. Os produtos nessa amostra, assim como os demais no \textit{dataset}, são itens de utilidade doméstica (bandeja e potes para bolo e sacolas térmicas para alimentos).
+
+Quanto aos produtos que mais frequentemente receberam avaliação 3 (Tabela \ref{tab:a3}), pode-se concluir que foram os mesmos para todos os clientes. Isso indica que há produtos no conjunto que não foram adquiridos por nenhum cliente, e que por consequência também não figuraram entre os mais vendidos nos países de origem dos clientes. Esses produtos correspondem a 27,22\% do total, ou seja, essa amostra engloba 1108 dos 4070 produtos presentes na base.
+
+Analisando os produtos que mais frequentemente receberam avaliações 2 e 1 (Tabelas \ref{tab:a2} e \ref{tab:a1}), pode-se concluir que o produto que mais frequentemente recebeu notas baixas foi assim avaliado para somente 4,6\% dos clientes. Esse cenário indica que a maior parte dos produtos na base é vendido com frequência igual ou próxima, enquanto somente uma parcela menor tem baixo de volume venda em cada país analisado. Essa análise, portanto, condiz também com a encontrada para os itens com avaliação 3.
+
+Portanto, pode-se concluir que a abordagem de FC por Categoria aplicada ao \textit{dataset} citado trabalhou de forma a avaliar com pontuação alta todos os produtos populares nos países analisados, e com valor ligeiramente mais baixo os produtos que nenhum dos clientes comprou. Dessa forma, o sistema de recomendação é capaz de incentivar clientes antigos a recomprarem produtos populares, clientes novos a comprarem esses mesmos produtos, bem tornar produtos com baixo volume de venda mais populares entre a base de consumidores como um todo. Todos esses cenários são positivos para os vendedores que ofertam seus itens em \textit{e-commerce}.
+
+\vspace{1cm}
+
+\begin{table}[ht]
+\centering
+\begin{tabular}{@{}llll@{}}
+\toprule
+\textbf{ID produto} & \textbf{Nome produto}         & \textbf{Nº avaliações 4} & \textbf{\% clientes} \\ \midrule
+180                 & LUNCH BAG RED RETROSPOT          & 3916                          & 89,55                       \\
+1348                & REGENCY CAKESTAND 3 TIER         & 3866                          & 88,41                       \\
+1314                & LUNCH BAG SUKI DESIGN            & 3827                          & 87,51                       \\
+182                 & LUNCH BAG BLACK SKULL            & 3818                          & 87,31                       \\
+1631                & SET OF 3 CAKE TINS PANTRY DESIGN & 3806                          & 87,03                       \\ \bottomrule
+\end{tabular}
+\caption{Análise dos 5 produtos que mais receberam avaliação 4}
+\label{tab:a4}
+\end{table}
+\vspace{1cm}
+
+\begin{table}[ht]
+\centering
+\begin{tabular}{@{}llll@{}}
+\toprule
+\textbf{ID produto} & \textbf{Nome produto}         & \textbf{Nº avaliações 3} & \textbf{\% clientes} \\ \midrule
+4068       & GIFT VOUCHER £50.00  & 4373                 & 100,00             \\
+2610       & BIG POLKADOT MUG                    & 4373                 & 100,00             \\
+2601       & CHRISTMAS TREE T-LIGHT HOLD & 4373                 & 100,00             \\
+2600       & FOLKART HEART NAPKIN RINGS          & 4373                 & 100,00             \\
+2603       & ART METAL HEART T-LIGHT HOLDER & 4373                 & 100,00             \\ \bottomrule
+\end{tabular}
+\caption{Análise dos 5 produtos que mais receberam avaliação 3}
+\label{tab:a3}
+\end{table}
+\vspace{1cm}
+
+\begin{table}[ht]
+\centering
+\begin{tabular}{@{}llll@{}}
+\toprule
+\textbf{ID produto} & \textbf{Nome produto}         & \textbf{Nº avaliações 2} & \textbf{\% clientes} \\ \midrule
+3536       & HANGING HEART T-LIGHT HOLDER & 432                  & 9,88               \\
+1348       & REGENCY CAKESTAND 3 TIER           & 393                  & 8,99               \\
+3305       & ASSORTED COLOUR BIRD ORNAMENT      & 339                  & 7,75               \\
+4062       & POSTAGE                            & 253                  & 5,79               \\
+3515       & JUMBO BAG RED RETROSPOT            & 229                  & 5,24               \\ \bottomrule
+\end{tabular}
+\caption{Análise dos 5 produtos que mais receberam avaliação 2}
+\label{tab:a2}
+\end{table}
+\vspace{1cm}
+
+\begin{table}[ht]
+\centering
+\begin{tabular}{@{}llll@{}}
+\toprule
+\textbf{ID produto} & \textbf{Nome produto}         & \textbf{Nº avaliações 1} & \textbf{\% clientes} \\ \midrule
+339        & REX CASH+CARRY JUMBO SHOPPER    & 208                  & 4,76               \\
+1862       & JAM MAKING SET WITH JARS        & 179                  & 4,09               \\
+1043       & PAPER CHAIN KIT 50'S CHRISTMAS  & 172                  & 3,93               \\
+1128       & VICTORIAN GLASS HANGING T-LIGHT & 170                  & 3,89               \\
+3346       & ANTIQUE SILVER TEA GLASS ETCHED & 160                  & 3,66               \\ \bottomrule
+\end{tabular}
+\caption{Análise dos 5 produtos que mais receberam avaliação 1}
+\label{tab:a1}
+\end{table}
+\vspace{1cm}
