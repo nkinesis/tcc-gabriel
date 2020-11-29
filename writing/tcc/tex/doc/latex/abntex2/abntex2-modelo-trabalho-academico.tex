@@ -1,0 +1,473 @@
+%% abtex2-modelo-trabalho-academico.tex, v<VERSION> laurocesar
+%% Copyright 2012-<COPYRIGHT_YEAR> by abnTeX2 group at http://www.abntex.net.br/ 
+%% This work may be distributed and/or modified under the conditions of the LaTeX Project Public License, either version 1.3 of this license or (at your option) any later version.
+%% The latest version of this license is in http://www.latex-project.org/lppl.txt and version 1.3 or later is part of all distributions of LaTeX version 2005/12/01 or later.
+%% The Current Maintainer of this work is the abnTeX2 team, led by Lauro César Araujo. Further information are available on http://www.abntex.net.br/
+
+\documentclass[
+	% -- opções da classe memoir --
+	12pt,	% tamanho da fonte
+	%openany,
+	openright,			% capítulos começam em pág ímpar (insere página vazia caso preciso)
+	%twoside,			% para impressão em recto e verso. Oposto a oneside
+	oneside,            % para impressão em apenas um lado. Oposto twoside
+	a4paper,			% tamanho do papel. 
+	% -- opções da classe abntex2 --
+	%chapter=TITLE,		% títulos de capítulos convertidos em letras maiúsculas
+	%section=TITLE,		% títulos de seções convertidos em letras maiúsculas
+	%subsection=TITLE,	% títulos de subseções convertidos em letras maiúsculas
+	%subsubsection=TITLE,% títulos de subsubseções convertidos em letras maiúsculas
+	% -- opções do pacote babel --
+	english,			% idioma adicional para hifenização
+	french,				% idioma adicional para hifenização
+	spanish,			% idioma adicional para hifenização
+	brazil				% o último idioma é o principal do documento
+]{abntex2}
+
+% ---
+% Pacotes básicos 
+% ---
+\usepackage{lmodern}			% Usa a fonte Latin Modern			
+\usepackage[T1]{fontenc}		% Selecao de codigos de fonte.
+\usepackage[utf8]{inputenc}		% Codificacao do documento (conversão automática dos acentos)
+\usepackage{indentfirst}		% Indenta o primeiro parágrafo de cada seção.
+\usepackage{color}				% Controle das cores
+\usepackage{graphicx}			% Inclusão de gráficos
+\usepackage{microtype} 			% para melhorias de justificação
+\usepackage{tablefootnote}      %inserir notas de rodapé em tabelas
+
+%para usar codeblock
+\usepackage{listings}
+\definecolor{dkgreen}{rgb}{0,0.6,0}
+\definecolor{gray}{rgb}{0.5,0.5,0.5}
+\definecolor{mauve}{rgb}{0.58,0,0.82}
+\lstset{frame=tb,
+  language=Python,
+  aboveskip=3mm,
+  belowskip=3mm,
+  showstringspaces=false,
+  columns=flexible,
+  basicstyle={\small\ttfamily},
+  numbers=left,
+  numberstyle=\tiny\color{gray},
+  keywordstyle=\color{blue},
+  commentstyle=\color{dkgreen},
+  stringstyle=\color{mauve},
+  breaklines=true,
+  breakatwhitespace=true,
+  tabsize=3
+} 
+
+% ---
+		
+% ---
+% Pacotes adicionais, usados apenas no âmbito do Modelo Canônico do abnteX2
+% ---
+\usepackage{lipsum}	% para geração de dummy text
+% ---
+
+% ---
+% Capa e folha de rosto personalizada
+% ---
+\usepackage{unijui}
+% ---
+
+
+% ---
+% Pacotes de citações
+% ---
+\usepackage[brazilian,hyperpageref]{backref}	 % Paginas com as citações na bibl
+\usepackage[alf]{abntex2cite}	% Citações padrão ABNT
+
+% --- 
+% CONFIGURAÇÕES DE PACOTES
+% --- 
+
+% ---
+% Configurações do pacote backref
+% Usado sem a opção hyperpageref de backref
+\renewcommand{\backrefpagesname}{Citado na(s) página(s):~}
+% Texto padrão antes do número das páginas
+\renewcommand{\backref}{}
+% Define os textos da citação
+\renewcommand*{\backrefalt}[4]{
+	\ifcase #1 %
+		Nenhuma citação no texto.%
+	\or
+		Citado na página #2.%
+	\else
+		Citado #1 vezes nas páginas #2.%
+	\fi}%
+% ---
+
+% ---
+% Informações de dados para CAPA e FOLHA DE ROSTO
+% ---
+\titulo{Sistema de sugestão de produtos para e-commerce utilizando Inteligência Artificial}
+\autor{Gabriel Cavalheiro Ullmann}
+\local{Santa Rosa - RS}
+\data{2020}
+\orientador{Prof. Dr. Edson Luiz Padoin}
+\instituicao{
+  UNIVERSIDADE REGIONAL DO NOROESTE DO \\ESTADO DO RIO GRANDE DO SUL
+
+    DEPARTAMENTO DE CIÊNCIAS EXATAS E ENGENHARIAS \\
+    CIÊNCIA DA COMPUTAÇÃO}
+\tipotrabalho{Monografia}
+% O preambulo deve conter o tipo do trabalho, o objetivo, 
+% o nome da instituição e a área de concentração 
+\preambulo{Trabalho de Conclusão de Curso do curso de graduação em
+Ciência da Computação apresentado ao Departamento de Ciências Exatas e Engenharias da Universidade Regional do Noroeste do Estado do Rio Grande do Sul como requisito parcial para a obtenção do título de Bacharel em Ciência da Computação.}
+% ---
+
+
+% ---
+% Configurações de aparência do PDF final
+
+% alterando o aspecto da cor azul
+\definecolor{blue}{RGB}{41,5,195}
+
+% informações do PDF
+\makeatletter
+\hypersetup{
+     	%pagebackref=true,
+		pdftitle={\@title}, 
+		pdfauthor={\@author},
+    	pdfsubject={\imprimirpreambulo},
+	    pdfcreator={LaTeX with abnTeX2},
+		pdfkeywords={abnt}{latex}{abntex}{abntex2}{trabalho acadêmico}, 
+		colorlinks=false,       		% false: boxed links; true: colored links
+    	linkcolor=blue,          	% color of internal links
+    	citecolor=blue,        		% color of links to bibliography
+    	filecolor=magenta,      		% color of file links
+		%urlcolor=blue,
+		urlcolor=black
+		bookmarksdepth=4
+}
+\makeatother
+% --- 
+
+% ---
+% Posiciona figuras e tabelas no topo da página quando adicionadas sozinhas
+% em um página em branco. Ver https://github.com/abntex/abntex2/issues/170
+\makeatletter
+\setlength{\@fptop}{5pt} % Set distance from top of page to first float
+\makeatother
+% ---
+
+% ---
+% Possibilita criação de Quadros e Lista de quadros.
+% Ver https://github.com/abntex/abntex2/issues/176
+%
+\newcommand{\quadroname}{Quadro}
+\newcommand{\listofquadrosname}{Lista de quadros}
+
+\newfloat[chapter]{quadro}{loq}{\quadroname}
+\newlistof{listofquadros}{loq}{\listofquadrosname}
+\newlistentry{quadro}{loq}{0}
+
+% configurações para atender às regras da ABNT
+\setfloatadjustment{quadro}{\centering}
+\counterwithout{quadro}{chapter}
+\renewcommand{\cftquadroname}{\quadroname\space} 
+\renewcommand*{\cftquadroaftersnum}{\hfill--\hfill}
+
+% ---
+% Comandos personalizados: citar com tradução (com/sem parênteses)
+% ---
+\newcommand{\citedirt}[1]{\citeauthor{#1} (\citeyear{#1}, tradução nossa)}
+\newcommand{\citedirtp}[1]{(\citeauthor{#1}, \citeyear{#1}, tradução nossa)}
+% ---
+% Comandos personalizados: citar sem tradução (com/sem parênteses)
+% ---
+\newcommand{\citedir}[1]{\citeauthor{#1} (\citeyear{#1})}
+\newcommand{\citedir}[1]{(\citeauthor{#1} \citeyear{#1})}
+
+% ---
+% Ver https://github.com/abntex/abntex2/issues/176
+% ---
+\setfloatlocations{quadro}{hbtp} 
+
+% --- 
+% Espaçamentos entre linhas e parágrafos 
+% --- 
+\setlength{\parindent}{1.3cm}
+\setlength{\parskip}{0.2cm} 
+
+% ---
+% compila o indice
+% ---
+\makeindex
+
+% ----
+% Início do documento
+% ----
+\begin{document}
+
+% Seleciona o idioma do documento (conforme pacotes do babel)
+\selectlanguage{brazil}
+
+% Retira espaço extra obsoleto entre as frases.
+\frenchspacing 
+
+% ----------------------------------------------------------
+% ELEMENTOS PRÉ-TEXTUAIS
+% ----------------------------------------------------------
+% \pretextual
+
+% ---
+% Capa
+% ---
+
+\imprimircapa
+% ---
+
+% ---
+% Folha de rosto
+% O símbolo * indica que haverá a ficha bibliográfica
+% ---
+\imprimirfolhaderosto*
+% ---
+
+% ---
+% Inserir a ficha bibliografica
+% ---
+\begin{fichacatalografica}
+	\sffamily
+	\vspace*{\fill}					% Posição vertical
+	\begin{center}					% Minipage Centralizado
+	\fbox{\begin{minipage}[c][8cm]{13.5cm}		% Largura
+	\small
+	\imprimirautor
+	%Sobrenome, Nome do autor
+	
+	\hspace{0.5cm} \imprimirtitulo  / \imprimirautor. --
+	\imprimirlocal, \imprimirdata-
+	
+	\hspace{0.5cm} \thelastpage p. : il. (algumas color.) ; 30 cm.\\
+	
+	\hspace{0.5cm} \imprimirorientadorRotulo~\imprimirorientador\\
+	
+	\hspace{0.5cm}
+	\parbox[t]{\textwidth}{\imprimirtipotrabalho~--~\imprimirinstituicao,
+	\imprimirdata.}\\
+
+	\hspace{0.5cm}
+		1. Sistemas de Recomendação.
+		2. Inteligência Artificial.
+		3. Machine Learning.
+		I. Prof. Dr. Edson Luiz Padoin.
+		II. Universidade Regional do Noroeste do Estado do Rio Grande do Sul.
+		III. Título 			
+	\end{minipage}}
+	\end{center}
+\end{fichacatalografica}
+
+
+% ---
+% Inserir folha de aprovação
+% Isto é um exemplo de Folha de aprovação, elemento obrigatório da NBR 14724/2011 (seção 4.2.1.3). 
+% ---
+
+\begin{folhadeaprovacao}
+
+  \begin{center}
+    {\ABNTEXchapterfont\large\imprimirautor}
+
+    \vspace*{\fill}\vspace*{\fill}
+    \begin{center}
+      \ABNTEXchapterfont\bfseries\Large\imprimirtitulo
+    \end{center}
+    \vspace*{\fill}
+    
+    \hspace{.45\textwidth}
+    \begin{minipage}{.5\textwidth}
+        \imprimirpreambulo
+    \end{minipage}%
+    \vspace*{\fill}
+   \end{center}
+        
+   Trabalho aprovado. \imprimirlocal, 24 de julho de 2020:
+
+   \assinatura{\textbf{\imprimirorientador} \\ Orientador} 
+   \assinatura{\textbf{TODO: BANCA } \\ Banca}
+   %\assinatura{\textbf{Professor} \\ Convidado 2}
+   %\assinatura{\textbf{Professor} \\ Convidado 3}
+   %\assinatura{\textbf{Professor} \\ Convidado 4}
+      
+   \begin{center}
+    \vspace*{0.5cm}
+    {\large\imprimirlocal}
+    \par
+    {\large\imprimirdata}
+    \vspace*{1cm}
+  \end{center}
+  
+\end{folhadeaprovacao}
+
+
+% ---
+% Dedicatória
+% ---
+\begin{dedicatoria}
+   \vspace*{\fill}
+   \centering
+   \noindent
+   \textit{ TODO dedicatória } \vspace*{\fill}
+\end{dedicatoria}
+
+% ---
+% Agradecimentos
+% ---
+\begin{agradecimentos}
+TODO agradecimentos
+
+\end{agradecimentos}
+
+% ---
+% Epígrafe
+% ---
+\begin{epigrafe}
+    \vspace*{\fill}
+	\begin{flushright}
+		\textit{``TODO quote``\\
+		(TODO quote)}
+	\end{flushright}
+\end{epigrafe}
+
+% ---
+% RESUMO - Português
+% ---
+
+\setlength{\absparsep}{18pt} 
+\begin{resumo}
+
+O trabalho trata da implementação de um sistema de recomendação baseado em filtragem colaborativa, utilizando técnicas de Machine Learning e Deep Learning. Esse sistema, diferentemente de outros do tipo, não depende de avaliações numéricas dadas pelos clientes e infere a popularidade dos produtos a partir de diferentes conjuntos de regras baseadas no volume de vendas dos mesmos. Nesse estudo, os resultados de recomendação são analisados e comparados no que se refere a suas características estatísticas.
+
+ \textbf{Palavras-chave}: Sistemas de Recomendação. Inteligência Artificial. Machine Learning. Deep Learning. Ciência de Dados.
+\end{resumo}
+
+% ---
+% RESUMO - Inglês
+% ---
+\begin{resumo}[Abstract]
+ \begin{otherlanguage*}{english}
+This work describes the implementation of a collaborative-filtering based recommendation system using Machine Learning and Deep Learning techniques. This system, unlike others of the same type, does not depend on numerical ratings given by customers, instead inferring the popularity of the products through different sets of rules based on their sales volume. In this study, the recommendation results are analyzed and compared with regard to their statistical features.
+   \vspace{\onelineskip}
+ 
+   \noindent 
+   \textbf{Keywords}: Recommendation Systems. Artificial Intelligence. Machine Learning. Deep Learning. Data Science.
+ \end{otherlanguage*}
+\end{resumo}
+
+% ---
+% inserir lista de ilustrações
+% ---
+\pdfbookmark[0]{\listfigurename}{lof}
+\listoffigures*
+\cleardoublepage
+% ---
+
+% ---
+% inserir lista de tabelas
+% ---
+\pdfbookmark[0]{\listtablename}{lot}
+\listoftables*
+\cleardoublepage
+% ---
+
+% ---
+% inserir lista de abreviaturas e siglas
+% ---
+\begin{siglas}
+    \item [CPU] \textit{Central Processing Unit}
+    \item [ERP] \textit{Enterprise Resource Planning}
+    \item [FC] \textit{Filtragem Colaborativa}
+    \item [GPU] \textit{Graphics Processing Unit}
+    \item [IA] \textit{Inteligência Artificial}
+    \item [IDE] \textit{Integrated Development Environment}
+    \item [LTS] \textit{Long-Term Support}
+    \item [ML] \textit{Machine Learning}
+    \item [RAM] \textit{Random Access Memory}
+    \item [RNA] \textit{Rede Neural Artificial}
+    \item [UCI] \textit{University of California, Irvine}
+\end{siglas}
+
+% ---
+% inserir o sumario
+% ---
+\pdfbookmark[0]{\contentsname}{toc}
+\tableofcontents*
+\cleardoublepage
+
+% ----------------------------------------------------------
+% ELEMENTOS TEXTUAIS
+% ----------------------------------------------------------
+\textual
+
+\input{doc/latex/text/1_introducao}
+\input{doc/latex/text/2_estadodaarte}
+\input{doc/latex/text/3_materiais_metodos}
+\input{doc/latex/text/4_desenvolvimento}
+\input{doc/latex/text/5_resultados}
+\input{doc/latex/text/6_conclusao}
+
+% ----------------------------------------------------------
+% ELEMENTOS PÓS-TEXTUAIS
+% ----------------------------------------------------------
+\postextual
+
+% ----------------------------------------------------------
+% Referências bibliográficas
+% ----------------------------------------------------------
+\bibliography{abntex2-modelo-references}
+
+% ----------------------------------------------------------
+% Anexos
+% ----------------------------------------------------------
+\begin{anexosenv}
+\partanexos
+
+\chapter{Código - Rede neural Dense do Keras} \label{anexo1}
+\begin{lstlisting}
+    import pandas as pd
+    from keras.models import Model
+    from keras.layers import Input, Embedding, Flatten, Dense, Concatenate
+    from sklearn.model_selection import train_test_split
+ 
+    # carregar arquivo, dividir dataset em treinamento/teste
+    dataset = pd.read_csv('arquivo.csv')
+    train, test = train_test_split(dataset, test_size=0.2, random_state=42)
+
+    # criar embedding para produtos
+    prod_input = Input(shape=[1], name="Prod-Input")
+    prod_embedding = Embedding(n_prods+1, 5, name="Prod-Embedding")(prod_input)
+    prod_vec = Flatten(name="Flatten-Prods")(prod_embedding)
+    
+    # criar embedding para segmentos de cliente
+    client_input = Input(shape=[1], name="Client-Input")
+    client_embedding = Embedding(n_users+1, 5, name="Client-Embedding")(client_input)
+    client_vec = Flatten(name="Flatten-Clients")(client_embedding)
+    
+    # concatenar conjuntos
+    conc = Concatenate()([prod_vec, client_vec])
+    
+    # adicionar camadas
+    fc1 = Dense(128, activation='relu')(conc)
+    fc2 = Dense(32, activation='relu')(fc1)
+    out = Dense(1)(fc2)
+    
+    # treinamento
+    model2 = Model([client_input, prod_input], out)
+    model2.compile('adam', 'mean_squared_error')
+\end{lstlisting}
+
+\end{anexosenv}
+
+%-------------------------------------------------------------------
+% INDICE REMISSIVO
+%-------------------------------------------------------------------
+\phantompart
+\printindex
+
+\end{document}

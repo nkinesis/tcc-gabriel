@@ -1,0 +1,56 @@
+\chapter{Materiais e Métodos} \label{mat-metodos}
+\pagestyle{simple} 
+
+Nesse capítulo serão delimitados detalhes relativos à metodologia empregada para o desenvolvimento do trabalho, bem como especificidades do ambiente e ferramentas de \textit{software} a serem utilizadas.
+
+\section{Metodologia Utilizada} \label{metodologia}
+
+Visto que um dos objetivos do estudo é aplicar a IA treinada para gerar sugestões de produtos, esse se enquadra na classe de pesquisa qualitativa, ou seja, seus resultados irão nos ajudar a entender os comportamentos dos consumidores contidos na amostra de dados a ser utilizada. Contudo, a parametrização da rede neural muitas vezes envolve valores discretos, e como um dos objetivos é também encontrar a melhor configuração de rede para esse caso de uso, os resultados serão um misto de dados qualitativos e quantitativos.
+
+Assim como descrito no trabalho de \citedir{burke02}, a proposta desse trabalho será desenvolver uma aplicação que gere sugestões com base em transações comerciais passadas, mas sem que haja a necessidade de que o comprador informe o tipo de produto que está buscando ou por qual motivo a compra ou pesquisa está sendo efetuada. A abordagem escolhida para atingir esse objetivo consiste no desenvolvimento de um sistema de recomendação híbrido. Como descrito na Seção \ref{sist-rec}, esse tipo de sistema integra características de diferentes abordagens, visando mitigar os problemas específicos de cada uma.
+
+Inicialmente, será realizada a seleção da base de pedidos a ser utilizada para o treinamento da IA. Serão utilizados repositórios online como Kaggle, GitHub e UCI ML para buscar por conjuntos de dados. As bases escolhidas devem conter dados que permitam identificar clientes ou produtos de forma simples (ex.: nome, marca, categoria) e um código único para identificar essas entidades.
+
+Após a seleção, serão definidos métodos que permitam inferir a popularidade de um produto em relação a um determinado cliente ou grupo de clientes. Essa popularidade será representado por uma avaliação numérica. Se uma combinação de cliente/produto recebe uma avaliação de valor alto, isso significará que o produto é uma boa recomendação para aquele cliente. Se a avaliação for baixa, isso significará que o produto pode não ser a recomendação mais adequada. Cada método definirá as avaliações de acordo com diferentes regras, agrupando os clientes por diferentes critérios.
+
+Os \textit{datasets} selecionados no início do estudo serão processados por um algoritmo que aplicará as regras definidas pelos métodos, e para cada método o \textit{datases} de entrada resultará em outro de saída, contendo clientes, produtos e as avaliações inferidas. O conjunto de dados resultante desse projeto será utilizado para alimentar uma rede neural. As combinações de cliente/produto serão as entradas, e as avaliações serão as saídas. 
+
+A rede neural será criada através da biblioteca Keras em Python. Utilizando o editor Jupyter Notebook será possível prototipar uma estrutura inicial e testá-la até chegar em um código minimamente funcional, uma rede que possa ser treinada e que retorne predições corretas, ainda que considerando apenas uma fração do conjunto de dados total. 
+
+Desse ponto em diante, o desenvolvimento será realizado utilizando o Visual Studio Code. Diferente do Jupyter, que organiza o código em "células" e permite a inclusão de comentários com texto formatado, imagens e outros recursos visuais junto ao código, o Visual Studio Code funciona de forma mais parecida com um editor de texto convencional. Esse ambiente permite que o código seja organizado com mais concisão e clareza, o que se torna importante à medida que o projeto avança e o número de linhas cresce.
+
+Se necessário, a rede neural passará então por diversas iterações de treinamento, na qual serão testados diferentes parametrizações referentes ao processo de treinamento em si (ex.: número de épocas, \textit{batch size}) ou à rede (ex.: número de neurônios, camadas e funções de ativação, erro e otimização). Cada teste será registrado de modo que possam ser identificadas as configurações que resultem nos modelos mais precisos e rápidos. Ao final dos testes, os melhores modelos serão utilizados para a geração de sugestões.
+
+Por fim, as avaliações e sugestões geradas por cada método serão comparadas e então analisadas qualitativamente em relação aos dados que as originaram. Ou seja, a partir de uma análise manual dos dados, será possível constatar se as previsões geradas foram relevantes ou não. Caso não sejam, novos testes serão realizados até que seja encontrado o modelo ideal. Essa pesquisa possui, portanto, caráter aplicado e exploratório.
+
+\section{Ambiente de Testes} \label{amb-testes}
+Para desenvolvimento e prototipação foi utilizado um notebook Acer Nitro 5 com as seguintes configurações de \textit{hardware}:
+\begin{itemize}
+    \item Processador: Intel Core i5-8300H @ 2.30GHz, 4 núcleos, 8 processadores lógicos
+    \item RAM: 8GB
+    \item Armazenamento: 1TB
+\end{itemize}
+
+O seguinte ambiente de \textit{software} foi configurado no notebook:
+\begin{itemize}
+    \item Sistema Operacional: Windows 10 Education
+    \item Versão do Python: 3.7.6
+    \item Editor de texto: Jupyter Notebook v6.0.3
+\end{itemize}
+
+Os testes descritos no trabalho foram efetuados em um servidor da Unijuí com  com as seguintes configurações de \textit{hardware}:
+\begin{itemize}
+    \item Processador: Intel Core i7-8700 @ 3.20GHz, 6 núcleos, 12 processadores lógicos
+    \item RAM: 16GB
+    \item Armazenamento: 450GB
+\end{itemize}
+
+O seguinte ambiente de \textit{software} foi configurado no servidor:
+\begin{itemize}
+    \item Sistema Operacional: Ubuntu 18.04.4 LTS
+    \item Versão do Python: 3.6.9
+    \item Editor de texto: nano
+\end{itemize}
+
+\section{Considerações do Capítulo} \label{consid2}
+Nesse capítulo foram apresentadas as metodologias empregadas no desenvolvimento do trabalho, bem como especificidades do ambiente de desenvolvimento e ferramentas, tanto no âmbito do \textit{software} quanto do \textit{hardware}. 
