@@ -1,13 +1,16 @@
+#!/usr/bin/env python
+# coding: utf-8
+
+import warnings
+warnings.simplefilter(action='ignore', category=FutureWarning)
+
 import os
 import sys
-import warnings
 import numpy as np
 import pandas as pd
 from keras.models import Model
 from keras.models import load_model
 from sklearn.model_selection import train_test_split
-
-warnings.filterwarnings('ignore')
 
 # 1 validate params
 # sys.argv[1] - Client ID

@@ -1,6 +1,9 @@
 #!/usr/bin/env python
 # coding: utf-8
 
+import warnings
+warnings.simplefilter(action='ignore', category=FutureWarning)
+
 import os
 import sys
 import numpy as np
@@ -56,7 +59,7 @@ model2.compile('adam', 'mean_squared_error')
 
 from keras.models import load_model
 
-if os.path.exists('regression_model2.h5'):
+if os.path.exists('regression_model2.h5') and 1 == 2:
     model2 = load_model('regression_model2.h5')
 else:
     history = model2.fit([train.client_id, train.product_id], train.rating, epochs=int(sys.argv[1]), verbose=1)

@@ -1,3 +1,9 @@
+#!/usr/bin/env python
+# coding: utf-8
+
+import warnings
+warnings.simplefilter(action='ignore', category=FutureWarning)
+
 import pandas as pd
 import numpy as np
 
