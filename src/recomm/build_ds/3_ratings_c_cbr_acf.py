@@ -1,11 +1,11 @@
 #!/usr/bin/env python
 # coding: utf-8
 
+import warnings
+warnings.simplefilter(action='ignore', category=FutureWarning)
+
 import pandas as pd
 import numpy as np
-from numpy import array
-from numpy import argmax
-# from keras.models import load_model
 from sklearn.preprocessing import OrdinalEncoder
 
 def c_cbr_acf(prods_by_country, all_products, by_country, by_client, clients, rated_ds):
