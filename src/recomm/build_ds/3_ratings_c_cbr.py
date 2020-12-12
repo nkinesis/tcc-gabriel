@@ -5,19 +5,29 @@ import pandas as pd
 import numpy as np
 from numpy import array
 from numpy import argmax
-from keras.models import load_model
+# from keras.models import load_model
 from sklearn.preprocessing import OrdinalEncoder
 
 def c_cbr(all_products, by_country, by_client, clients, rated_ds):
     # checar condições rating 1 e 2
     for client in clients:
-        print("Avaliações 1 e 2, analisando cliente: " + str(client))
-        filtered_by_client = by_client[by_client.client_id == client]
-        current_country = filtered_by_client.values[0][1]
-        client_products = filtered_by_client['product_id'].values
-        for product in client_products:
+        
+        # print("Avaliações 1 e 2, analisando cliente: " + str(client))
+        filtered_by_client = by_client[by_client.client_id == client] # mais comprados pelo cli, todos os dados
+        current_country = filtered_by_client.values[0][1] # país do cli
+        client_products = filtered_by_client['product_id'].values # mais comprados pelo cli, somente ids
+
+        for product in client_products: # para cada um dos mais comprados pelo cli
+            
             is_product_in_country = by_country[(by_country.country == current_country) & (
-                by_country.product_id == product)]
+                by_country.product_id == product)] # esse produto mais comprado, está entre os mais comprados no país do cli?
+          
+            #if (product == "22328" or product == "1670") and not (current_country == "Japan"):
+            #    print("Client id: " + str(client))
+            #    print("Country: " + str(current_country))
+            #    print("Client prods: " + str(client_products))
+            #    print("is_product_in_country: " + str(len(is_product_in_country)))   
+
             if len(is_product_in_country) > 0:
                 # já comprou, é best seller na categoria
                 rated_ds.append([client, product, 2])

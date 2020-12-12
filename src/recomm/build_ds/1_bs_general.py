@@ -5,7 +5,7 @@ import pandas as pd
 import numpy as np
 from numpy import array
 from numpy import argmax
-from keras.models import load_model
+# from keras.models import load_model
 
 # definir quantos produtos serão considerados
 top_x = 10
